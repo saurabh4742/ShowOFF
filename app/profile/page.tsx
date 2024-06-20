@@ -28,10 +28,22 @@ import { ChooseSkill } from "@/components/ChooseSkill";
 import {  Edit2, Eye, UserRoundCheck } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import { ImGithub, ImLinkedin } from "react-icons/im";
-import { User } from "@prisma/client";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
+interface User {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  clerkUserId: string | null;
+  FirstName: string | null;
+  LastName: string | null;
+  SKill: string | null;
+  LinkdinId: string | null;
+  GithubId: string | null;
+  newUser: boolean;
+}
 export default function Page() {
+  
   const router=useRouter()
   const [firstName, setFirstName] = useState<string|null>("");
   const [lastName, setLastName] = useState<string|null>("");
