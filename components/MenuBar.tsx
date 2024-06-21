@@ -30,7 +30,9 @@ import {
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import ProfileCompletedOrNotWarn from "./ProfileCompletedOrNotWarn";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 export function MenuBar() {
+  const {user}=useUser();
   const router = useRouter();
   return (
     <DropdownMenu>
@@ -40,7 +42,11 @@ export function MenuBar() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel className="flex justify-center items-center">{user?.id? <Avatar>
+  <AvatarImage src={user.imageUrl} />
+  <AvatarFallback>{user.firstName && user.firstName[0]}</AvatarFallback>
+</Avatar>
+:"My Account"}</DropdownMenuLabel>
         <SignedIn>
           <DropdownMenuGroup>
             <DropdownMenuItem
