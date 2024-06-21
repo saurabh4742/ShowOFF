@@ -15,7 +15,7 @@ model User {
   FirstName   String?
   LastName    String?
   SKill       String?
-  LinkdinId   String?  @unique
-  GithubId    String?  @unique
+  LinkdinId   String?  
+  GithubId    String?  
   newUser     Boolean @default(true)
 }

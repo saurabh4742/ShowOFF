@@ -25,11 +25,10 @@ import { z } from "zod";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { ChooseSkill } from "@/components/ChooseSkill";
-import {  Edit2, Eye, UserRoundCheck } from "lucide-react";
+import {  Check, Edit2, Eye, UserRoundCheck } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import { ImGithub, ImLinkedin } from "react-icons/im";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
 interface User {
   id: string;
   createdAt: Date;
@@ -44,10 +43,10 @@ interface User {
 }
 export default function Page() {
   
-  const router=useRouter()
   const [firstName, setFirstName] = useState<string|null>("");
   const [lastName, setLastName] = useState<string|null>("");
   const [skill, setSkill] = useState<string|null>("");
+  const [newuser,setNewUser]=useState(false)
   const [linkedinId, setLinkedinId] = useState<string|null>("");
   const [githubId, setGithubId] = useState<string|null>("");
   const { user } = useUser();
@@ -71,7 +70,7 @@ export default function Page() {
         setGithubId(user.GithubId)
         setLinkedinId(user.LinkdinId)
         setSkill(user.SKill)
-        
+        setNewUser(user.newUser)
       } catch (error) {
         console.log(error)
       }
@@ -105,9 +104,8 @@ export default function Page() {
       });
       form.reset()
       setSaving(false);
-      await user?.update({firstName:FirstName,lastName:LastName})
-      router.refresh()
-      toast.success("Register Succesfuly");
+      setEditing(false)
+      window.location.reload()
     } catch (error) {
       setSaving(false);
       console.log("error");
@@ -116,12 +114,12 @@ export default function Page() {
 
   return (
     <div className="flex h-[100vh] my-4 justify-center items-center">
-      {firstName? <Card className="sm:w-4/12 w-full m-2  ">
+      {firstName? <Card className="sm:w-3/12 w-full m-2  ">
         <CardHeader className="font-semibold w-full justify-center flex items-center">
           <UserRoundCheck />
           {!editing?<Button className="flex justify-center items-center gap-2" variant="secondary" onClick={()=>{
             setEditing(true);
-          }}>Switch to edit<Edit2/></Button> :<Button onClick={()=>{
+          }}>Switch to {newuser ? "verify": "edit"}<Edit2/></Button> :<Button onClick={()=>{
             setEditing(false)
           }} className="flex justify-center items-center gap-2" variant="secondary">Switch to view <Eye/></Button>}
         </CardHeader>
@@ -221,7 +219,7 @@ export default function Page() {
                       />
                     </svg>
                   ) : (
-                    <>Save</>
+                    <>{newuser? <>Verify <Check /></>:<>Save</>}</>
                   )}
                 </Button>
               </div>}
