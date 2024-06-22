@@ -32,13 +32,13 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang='en'>
       <body className={cn(
-          "min-h-screen w-full flex-col  font-sans antialiased",
+          "min-h-screen w-full relative flex-col gap-2 font-sans antialiased",
           fontSans.variable
         )}>
           <Toaster />
           <Navbar/>
         {children}
-        <Footer/>
+        
       </body>
     </html>
   </ClerkProvider>
