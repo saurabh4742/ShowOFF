@@ -37,7 +37,7 @@ const frameworks = [
     label: "Android App Developer",
   },
   {
-    value: "Ml Developer",
+    value: "Machine Learning Developer",
     label: "ML Developer",
   },
 ]
