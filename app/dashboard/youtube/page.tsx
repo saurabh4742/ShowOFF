@@ -1,9 +1,10 @@
+import YoutubeSearch from '@/components/Youtube/YoutubeVideos'
 import React from 'react'
 
 const Page = () => {
   return (
-    <div>
-      Youtube Content Skill related
+    <div className='flex justify-center items-center min-h-[80vh]'>
+      <YoutubeSearch/>
     </div>
   )
 }

@@ -40,6 +40,130 @@ const frameworks = [
     value: "Machine Learning Developer",
     label: "ML Developer",
   },
+  {
+    value: "Data Scientist",
+    label: "Data Scientist",
+    },
+    {
+    value: "DevOps Engineer",
+    label: "DevOps Engineer",
+    },
+    {
+    value: "Database Administrator",
+    label: "Database Administrator",
+    },
+    {
+    value: "Mobile App Developer",
+    label: "Mobile App Developer",
+    },
+    {
+    value: "Game Developer",
+    label: "Game Developer",
+    },
+    {
+    value: "Embedded Systems Developer",
+    label: "Embedded Systems Developer",
+    },
+    {
+    value: "Blockchain Developer",
+    label: "Blockchain Developer",
+    },
+    {
+    value: "Security Engineer",
+    label: "Security Engineer",
+    },
+    {
+    value: "Software Architect",
+    label: "Software Architect",
+    },
+    {
+    value: "Cloud Engineer",
+    label: "Cloud Engineer",
+    },
+    {
+    value: "Big Data Engineer",
+    label: "Big Data Engineer",
+    },
+    {
+    value: "AI Developer",
+    label: "AI Developer",
+    },
+    {
+    value: "IoT Developer",
+    label: "IoT Developer",
+    },
+    {
+    value: "AR/VR Developer",
+    label: "AR/VR Developer",
+    },
+    {
+    value: "Robotics Engineer",
+    label: "Robotics Engineer",
+    },
+    {
+    value: "Site Reliability Engineer",
+    label: "Site Reliability Engineer",
+    },
+    {
+    value: "Web Developer",
+    label: "Web Developer",
+    },
+    {
+    value: "Systems Analyst",
+    label: "Systems Analyst",
+    },
+    {
+    value: "IT Project Manager",
+    label: "IT Project Manager",
+    },
+    {
+    value: "Quality Assurance Engineer",
+    label: "QA Engineer",
+    },
+    {
+    value: "UX/UI Designer",
+    label: "UX/UI Designer",
+    },
+    {
+    value: "Business Intelligence Developer",
+    label: "BI Developer",
+    },
+    {
+    value: "CRM Developer",
+    label: "CRM Developer",
+    },
+    {
+    value: "ERP Developer",
+    label: "ERP Developer",
+    },
+    {
+    value: "Salesforce Developer",
+    label: "Salesforce Developer",
+    },
+    {
+    value: "Network Engineer",
+    label: "Network Engineer",
+    },
+    {
+    value: "Application Developer",
+    label: "Application Developer",
+    },
+    {
+    value: "Algorithm Engineer",
+    label: "Algorithm Engineer",
+    },
+    {
+    value: "Technical Support Engineer",
+    label: "Technical Support Engineer",
+    },
+    {
+    value: "Middleware Developer",
+    label: "Middleware Developer",
+    },
+    {
+    value: "Release Manager",
+    label: "Release Manager",
+    }
 ]
 interface ChooseSkillProps {
     value: string;
