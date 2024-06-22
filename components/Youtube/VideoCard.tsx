@@ -58,8 +58,8 @@ export const VideoCard: FC<VideoProp> = ({ video }) => {
             <AvatarFallback>{video.snippet.channelTitle[0]}</AvatarFallback>
           </Avatar>
           <div className="space-y-2">
-            <h4 className="text-sm underline font-bold">@{video.snippet.channelTitle}</h4>
-            <div className="sm:flex w-full h-fit sm:h-[50vh] hidden">
+            <h4 className="text-sm text-[#F59E0B] underline font-semibold">@{video.snippet.channelTitle}</h4>
+            <div className="sm:flex w-full h-[60vh] hidden">
                 <ReactPlayer
                   width="100%"
                   height="100%"
@@ -73,7 +73,7 @@ export const VideoCard: FC<VideoProp> = ({ video }) => {
                   url={`https://www.youtube.com/watch?v=${video.id.videoId}`}
                 />
               </div>
-            <Label className="font-extrabold text-primary">{video.snippet.title}</Label>
+            <a href={`https://www.youtube.com/watch?v=${video.id.videoId}`} target="_blank"><Label className="font-extrabold text-primary">{video.snippet.title}</Label></a>
             <p className="text-sm">{video.snippet.description}</p>
             <div className="flex items-center pt-2">
               <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}

@@ -20,7 +20,7 @@ const Navbar = () => {
         drag="x"
         style={{ x, opacity }}
       >
-        ShowOFF
+        Show<span className="text-[#F59E0B]">OFF</span>
       </motion.span>
       <SignedIn><ProfileCompletedOrNotWarn value="Verification pending"/></SignedIn>
       <MenuBar />
