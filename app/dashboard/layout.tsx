@@ -5,7 +5,7 @@ export default function Layout({
   }>) {
     return (
       
-        <div className="w-full  min-h-[80vh] flex justify-center py-8 items-center    ">
+        <div>
                 {children}
         </div>
           

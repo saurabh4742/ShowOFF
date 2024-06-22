@@ -113,7 +113,7 @@ export default function Page() {
   }
 
   return (
-    <div className="flex h-[100vh] my-4 justify-center items-center">
+    <div className="flex  min-h-[80vh] my-4 justify-center items-center">
       {firstName? <Card className="sm:w-3/12 w-full m-2  ">
         <CardHeader className="font-semibold w-full justify-center flex items-center">
           <UserRoundCheck />

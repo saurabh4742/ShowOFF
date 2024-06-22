@@ -1,5 +1,6 @@
 import {
   Github,
+  LayoutDashboard,
   LifeBuoy,
   LogIn,
   LogOut,
@@ -58,10 +59,20 @@ export function MenuBar() {
               <span className="mr-2">Profile</span>
               <ProfileCompletedOrNotWarn value="verify now" />
             </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                router.push("/dashboard");
+              }}
+            >
+              <LayoutDashboard className="mr-2 h-4 w-4" />
+              <span className="mr-2">Dashboard</span>
+            </DropdownMenuItem>
           </DropdownMenuGroup>
         </SignedIn>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={()=>{
+          router.push("https://github.com/saurabh4742")
+        }}>
           <Github className="mr-2 h-4 w-4" />
           <span>GitHub</span>
         </DropdownMenuItem>
