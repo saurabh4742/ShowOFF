@@ -99,18 +99,6 @@ const YoutubeSearch = () => {
   };
   return (
     <div className="flex flex-shrink justify-center mt-2 items-center">
-      {isLoading && <p>Searching videos...</p>}
-      {error && <p>Error: {error}</p>}
-      {videos.length > 0 && (
-        <ul className="space-y-2">
-          {videos.map((video) => (
-            <li key={video.id.videoId}>
-              <VideoCard video={video}/>
-            </li>
-          ))}
-        </ul>
-      )}
-      {videos.length === 0  && skill && !isLoading && <p>No videos found.</p>}
       {isLoading && (
         <svg
           aria-hidden="true"
@@ -129,6 +117,18 @@ const YoutubeSearch = () => {
           />
         </svg>
       )}
+      {error && <p>Error: {error}</p>}
+      {videos.length > 0 && (
+        <ul className="space-y-2">
+          {videos.map((video) => (
+            <li key={video.id.videoId}>
+              <VideoCard video={video}/>
+            </li>
+          ))}
+        </ul>
+      )}
+      {videos.length === 0  && skill && !isLoading && <p>No videos found.</p>}
+      
     </div>
   );
 };

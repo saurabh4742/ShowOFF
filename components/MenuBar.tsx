@@ -1,4 +1,6 @@
 import {
+  BriefcaseBusiness,
+  Earth,
   Github,
   LayoutDashboard,
   LifeBuoy,
@@ -8,6 +10,7 @@ import {
   Settings,
   Trash2,
   User,
+  Zap,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -32,6 +35,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import ProfileCompletedOrNotWarn from "./ProfileCompletedOrNotWarn";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { ImYoutube } from "react-icons/im";
 export function MenuBar() {
   const {user}=useUser();
   const router = useRouter();
@@ -68,21 +72,67 @@ export function MenuBar() {
               <span className="mr-2">Dashboard</span>
             </DropdownMenuItem>
           </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              onClick={() => {
+                router.push("/dashboard/myposts");
+              }}
+            >
+              <Zap className="mr-2 h-4 w-4" />
+              <span className="mr-2">My posts</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                router.push("/dashboard/globe");
+              }}
+            >
+              <Earth className="mr-2 h-4 w-4" />
+              <span className="mr-2">Globe</span>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              onClick={() => {
+                router.push("/dashboard/jobs");
+              }}
+            >
+              <BriefcaseBusiness className="mr-2 h-4 w-4" />
+              <span className="mr-2">Jobs</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                router.push("/dashboard/github");
+              }}
+            >
+              <Github className="mr-2 h-4 w-4" />
+              <span className="mr-2">Github repositories</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                router.push("/dashboard/youtube");
+              }}
+            >
+              <ImYoutube className="mr-2 h-4 w-4" />
+              <span className="mr-2">Youtube videos</span>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
         </SignedIn>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={()=>{
           router.push("https://github.com/saurabh4742")
         }}>
           <Github className="mr-2 h-4 w-4" />
-          <span>GitHub</span>
+          <span>@Saurabh_Anand</span>
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            router.push("/support");
+            router.push("/contact");
           }}
         >
           <LifeBuoy className="mr-2 h-4 w-4" />
-          <span>Support</span>
+          <span>Contact us</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

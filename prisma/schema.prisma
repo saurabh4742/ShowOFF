@@ -17,5 +17,18 @@ model User {
   SKill       String?
   LinkdinId   String?  
   GithubId    String?  
+  imageUrl    String
   newUser     Boolean @default(true)
+  posts       Post[]   @relation("UserPosts")
+}
+
+model Post{
+  id          String   @id @default(cuid()) @map("_id")
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], name: "UserPosts")
+  comment     String
+  imageUrl    String
+  FirstName   String?
+  LastName    String?
+  createdAt   DateTime  @default(now())
 }

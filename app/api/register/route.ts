@@ -15,8 +15,8 @@ export async function POST(req:NextRequest) {
                 await db.user.create({data:{
                     clerkUserId:user?.id,
                     FirstName:user.firstName,
-                    LastName:user.lastName
-                    
+                    LastName:user.lastName,
+                    imageUrl:user.imageUrl
                 }})
                 console.log("resgitserd")
                 return NextResponse.json({user:user},{status:200})

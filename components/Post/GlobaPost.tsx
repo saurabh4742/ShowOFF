@@ -1,79 +1,47 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { transformSkill } from "@/Hooks/projectTitleForGithub";
-import { HoverCardDemo } from "./RepoCard";
-interface GithubRepo {
-  id: number;
-  name: string;
-  full_name: string; // Optional property for future use
-  owner: {
-    login: string;
-    avatar_url: string;
-  };
-  html_url: string;
-  description: string;
-  stargazers_count?: number;
-  created_at: string;
-  // Optional property for sorting by stars
-}
+import { PostCard } from "./PostCard";
+import { GlobalPostCard } from "./GlobalPostCard";
 
-type SearchResponse = {
-  items: GithubRepo[];
-};
-
-interface User {
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  clerkUserId: string | null;
-  FirstName: string | null;
-  LastName: string | null;
-  SKill: string | null;
-  LinkdinId: string | null;
-  GithubId: string | null;
-}
-const GithubRepoSearch: React.FC = () => {
-  const [repositories, setRepositories] = useState<GithubRepo[]>([]);
+interface Post {
+    id: string;
+    userId: string;
+    comment: string;
+    imageUrl: string;
+    firstName?: string;
+    lastName?: string;
+    createdAt: Date;
+  }
+  
+const GlobalPost: React.FC = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [skill, setSkill] = useState<string | null>(null);
 
   useEffect(() => {
-    const handleSubmit = async (myskill: string) => {
+    const handleSubmit = async () => {
       setIsLoading(true);
       setError("");
 
       try {
-        const response = await axios.get<SearchResponse>(
-          `https://api.github.com/search/repositories?q=${myskill}&sort=stars`
+        const response = await axios.get(
+          '/api/globalpost'
         );
-        console.log(response.data);
-        setRepositories(response.data.items);
+        console.log(response.data.post);
+        setPosts(response.data.post);
       } catch (error) {
         setError("catch run");
       } finally {
         setIsLoading(false);
       }
     };
-    async function getProfile() {
-      try {
-        const res = await axios.get("/api/getprofile");
-        const user: User = res.data.user;
-        setSkill(user.SKill);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getProfile();
-    if (skill) {
-      handleSubmit(transformSkill(skill));
-    }
-    // Optional: Code to fetch trending repositories on initial render can be placed here
-  }, [skill]);
+      handleSubmit();
+    // Optional: Code to fetch trending postsitories on initial render can be placed here
+  }, []);
 
   return (
-    <div className="flex justify-center mt-2 items-center" >
+    <div className="flex justify-center w-full mt-2 items-center" >
       {isLoading && (
         <svg
           aria-hidden="true"
@@ -93,21 +61,21 @@ const GithubRepoSearch: React.FC = () => {
         </svg>
       )}
       {error && <p>Error: {error}</p>}
-      {repositories.length > 0 && (
+      {posts.length > 0 && (
         <ul className="space-y-2">
-          {repositories.map((repo) => (
-            <li key={repo.id}>
-              <HoverCardDemo repo={repo} />
+          {posts.map((post) => (
+            <li key={post.id}>
+              <GlobalPostCard post={post} />
             </li>
           ))}
         </ul>
       )}
-      {repositories.length === 0 && skill && !isLoading && (
-        <p>No repositories found.</p>
+      {posts.length === 0  && !isLoading && (
+        <p>No Posts found.</p>
       )}
       
     </div>
   );
 };
 
-export default GithubRepoSearch;
+export default GlobalPost;
