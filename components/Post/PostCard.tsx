@@ -38,19 +38,19 @@ export const PostCard: FC<PostPromp> = ({ post }) => {
   const router = useRouter();
   return (
     <Card className="p-4 w-full">
-      <CardContent >
+      <CardContent className="w-full" >
         <div >
           <Avatar>
             <AvatarImage src={post.imageUrl} />
             <AvatarFallback>{}</AvatarFallback>
           </Avatar>
-          <div className="space-y-2">
+          <div className="w-full space-y-2">
             <h4 className="text-sm font-semibold">@{post.firstName && post.lastName && post.firstName+post.lastName}</h4>
             <p className="text-sm">{post.comment}</p>
             <div className="flex items-center pt-2">
               <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
               <span className="text-xs text-muted-foreground">
-                Created {new Date(post.createdAt).toLocaleDateString()}
+                Created {new Date(post.createdAt).toLocaleString()}
               </span>
             </div>
             <Button 

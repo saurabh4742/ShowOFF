@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { PostCard } from "./PostCard";
 import { GlobalPostCard } from "./GlobalPostCard";
 
 interface Post {
@@ -62,7 +61,7 @@ const GlobalPost: React.FC = () => {
       )}
       {error && <p>Error: {error}</p>}
       {posts.length > 0 && (
-        <ul className="space-y-2">
+        <ul className="space-y-2 w-full">
           {posts.map((post) => (
             <li key={post.id}>
               <GlobalPostCard post={post} />

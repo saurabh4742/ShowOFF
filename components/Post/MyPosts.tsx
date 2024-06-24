@@ -61,7 +61,7 @@ const MyPost: React.FC = () => {
       )}
       {error && <p>Error: {error}</p>}
       {posts.length > 0 && (
-        <ul className="space-y-2">
+        <ul className="space-y-2 w-full">
           {posts.map((post) => (
             <li key={post.id}>
               <PostCard post={post} />

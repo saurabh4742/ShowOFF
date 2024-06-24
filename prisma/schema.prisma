@@ -25,7 +25,7 @@ model User {
 model Post{
   id          String   @id @default(cuid()) @map("_id")
   userId      String
-  user        User     @relation(fields: [userId], references: [id], name: "UserPosts")
+  user        User     @relation(fields: [userId], references: [id], name: "UserPosts", onDelete: Cascade) 
   comment     String
   imageUrl    String
   FirstName   String?

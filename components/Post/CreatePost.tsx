@@ -58,7 +58,7 @@ export default function CreatePost() {
     <Form {...form}>
       <form 
         onSubmit={form.handleSubmit(onSubmit)}
-        className="sm:w-2/6 w-full p-5 space-y-3 shadow-lg rounded-lg "
+        className=" w-full p-5 space-y-3 shadow-lg rounded-lg "
       >
         <FormField
           control={form.control}

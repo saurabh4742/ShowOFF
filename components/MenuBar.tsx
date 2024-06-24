@@ -80,7 +80,7 @@ export function MenuBar() {
               }}
             >
               <Zap className="mr-2 h-4 w-4" />
-              <span className="mr-2">My posts</span>
+              <span className="mr-2">My Posts</span>
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => {
@@ -88,7 +88,7 @@ export function MenuBar() {
               }}
             >
               <Earth className="mr-2 h-4 w-4" />
-              <span className="mr-2">Globe</span>
+              <span className="mr-2">Global Feed</span>
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
