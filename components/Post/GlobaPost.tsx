@@ -8,8 +8,8 @@ interface Post {
     clerkuserId: string;
     comment: string;
     imageUrl: string;
-    firstName?: string;
-    lastName?: string;
+    FirstName?: string;
+    LastName?: string;
     createdAt: Date;
   }
   

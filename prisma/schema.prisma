@@ -31,4 +31,5 @@ model Post{
   FirstName   String?
   LastName    String?
   createdAt   DateTime  @default(now())
+  Type        String
 }

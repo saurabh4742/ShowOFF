@@ -5,14 +5,14 @@ import { FC } from "react";
 import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
 interface Post {
-    id: string;
-    clerkuserId: string;
-    comment: string;
-    imageUrl: string;
-    firstName?: string;
-    lastName?: string;
-    createdAt: Date;
-  }
+  id: string;
+  clerkuserId: string;
+  comment: string;
+  imageUrl: string;
+  FirstName?: string;
+  LastName?: string;
+  createdAt: Date;
+}
 interface PostPromp {
   post: Post;
 }
@@ -24,10 +24,10 @@ export const GlobalPostCard: FC<PostPromp> = ({ post }) => {
         <div >
           <Avatar>
             <AvatarImage src={post.imageUrl} />
-            <AvatarFallback>{post.firstName && post.firstName[0]}</AvatarFallback>
+            <AvatarFallback>{post.FirstName && post.FirstName[0]}</AvatarFallback>
           </Avatar>
           <div className="space-y-2">
-            <h4 className="text-sm font-semibold">@{post.firstName}</h4>
+            <h4 className="text-sm font-semibold">@{post.FirstName && post.LastName && post.FirstName+"_"+post.LastName}</h4>
             <p className="text-sm">{post.comment}</p>
             <div className="flex items-center pt-2">
               <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}

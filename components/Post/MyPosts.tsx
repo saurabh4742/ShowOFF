@@ -4,14 +4,14 @@ import axios from "axios";
 import { PostCard } from "./PostCard";
 
 interface Post {
-    id: string;
-    userId: string;
-    comment: string;
-    imageUrl: string;
-    firstName?: string;
-    lastName?: string;
-    createdAt: Date;
-  }
+  id: string;
+  clerkuserId: string;
+  comment: string;
+  imageUrl: string;
+  FirstName?: string;
+  LastName?: string;
+  createdAt: Date;
+}
   
 const MyPost: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);

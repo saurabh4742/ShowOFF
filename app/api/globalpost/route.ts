@@ -2,7 +2,7 @@ import { db } from "@/utils/prismadb";
 import { NextResponse, NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
   try {
-    const Post = await db.post.findMany({orderBy: {
+    const Post = await db.post.findMany({where:{Type:"Global"},orderBy: {
         createdAt: 'desc'
       }});
       if(Post){

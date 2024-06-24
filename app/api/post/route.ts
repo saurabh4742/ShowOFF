@@ -16,7 +16,8 @@ export async function POST(req:NextRequest) {
                         FirstName:existinguser.FirstName,
                         LastName:existinguser.LastName,
                         imageUrl:existinguser.imageUrl,
-                        clerkuserId:user.id
+                        clerkuserId:user.id,
+                        Type:"Global"
                     }
                 })
                 return NextResponse.json({message:"POST Created"},{status:200})
