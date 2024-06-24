@@ -5,7 +5,7 @@ export async function GET(req:NextRequest) {
     try {
         const user = await currentUser();
         if(user?.id){
-               const Post= await db.post.findMany()
+               const Post= await db.post.findMany({orderBy:{createdAt:"desc"}})
                 return NextResponse.json({post:Post},{status:200})
             }
         return NextResponse.json({message:"Unauthorized"},{status:200})
