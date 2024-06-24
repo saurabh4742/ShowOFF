@@ -16,7 +16,7 @@ export async function POST(req:NextRequest) {
                         FirstName:existinguser.FirstName,
                         LastName:existinguser.LastName,
                         imageUrl:existinguser.imageUrl,
-                        userId:user.id
+                        clerkuserId:user.id
                     }
                 })
                 return NextResponse.json({message:"POST Created"},{status:200})
@@ -34,7 +34,7 @@ export async function GET(req:NextRequest) {
         if(user?.id){
                const Post= await db.post.findMany({
                     where:{
-                        userId:user.id
+                        clerkuserId:user.id
                     }
                 })
                 return NextResponse.json({post:Post},{status:200})
