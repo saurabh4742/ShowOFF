@@ -25,7 +25,7 @@ const GlobalPost: React.FC = () => {
 
       try {
         const response = await axios.get(
-          '/api/globalpost'
+          '/api/global'
         );
         console.log(response.data.post);
         setPosts(response.data.post);
