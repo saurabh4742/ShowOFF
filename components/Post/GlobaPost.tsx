@@ -5,7 +5,7 @@ import { GlobalPostCard } from "./GlobalPostCard";
 
 interface Post {
     id: string;
-    userId: string;
+    clerkuserId: string;
     comment: string;
     imageUrl: string;
     firstName?: string;
