@@ -5,6 +5,7 @@ export const PersonalDetailFormSchema = z.object({
     SKill:z.string().min(1,{message:"Cannot be empty"}),
     LinkdinId:z.string().min(1,{message:"Cannot be empty"}),
     GithubId:z.string().min(1,{message:"Cannot be empty"}),
+    Location:z.string().min(1,{message:"Cannot be empty"}),
 })
 
 export const PostFormSchema=z.object({

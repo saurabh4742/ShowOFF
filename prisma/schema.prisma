@@ -20,6 +20,7 @@ model User {
   imageUrl    String
   newUser     Boolean @default(true)
   posts       Post[]   @relation("UserPosts")
+  location    String?
 }
 
 model Post{

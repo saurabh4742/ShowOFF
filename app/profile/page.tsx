@@ -29,6 +29,7 @@ import {  Check, Edit2, Eye, UserRoundCheck } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import { ImGithub, ImLinkedin } from "react-icons/im";
 import { Label } from "@/components/ui/label";
+import { ChooseLocation } from "@/components/ChooseLocation";
 interface User {
   id: string;
   createdAt: Date;
@@ -40,6 +41,7 @@ interface User {
   LinkdinId: string | null;
   GithubId: string | null;
   newUser: boolean;
+  location: string | null;
 }
 export default function Page() {
   
@@ -49,10 +51,10 @@ export default function Page() {
   const [newuser,setNewUser]=useState(false)
   const [linkedinId, setLinkedinId] = useState<string|null>("");
   const [githubId, setGithubId] = useState<string|null>("");
+  const [location, setLocation] = useState<string|null>("");
   const { user } = useUser();
   const [saving, setSaving] = React.useState(false);
   const [editing, setEditing] = React.useState(false);
-  const [value, setValue] = React.useState("");
   useEffect(()=>{
     async function RegisterIfNot() {
       try {
@@ -71,6 +73,7 @@ export default function Page() {
         setLinkedinId(user.LinkdinId)
         setSkill(user.SKill)
         setNewUser(user.newUser)
+        setLocation(user.location)
       } catch (error) {
         console.log(error)
       }
@@ -84,21 +87,23 @@ export default function Page() {
     defaultValues: {
       FirstName: "",
       LastName: "",
-      SKill: value,
+      SKill: "",
       LinkdinId: "",
+      Location:"",
       GithubId: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof PersonalDetailFormSchema>) {
     try {
-      const { FirstName, LastName, SKill, LinkdinId, GithubId } = values;
+      const { FirstName, LastName, SKill, LinkdinId, GithubId ,Location} = values;
       console.log(values);
       setSaving(true);
       const res = await axios.post("/api/profileupdate", {
         FirstName,
         LastName,
         SKill,
+        Location,
         LinkdinId,
         GithubId,
       });
@@ -149,6 +154,22 @@ export default function Page() {
                       <Input placeholder="Enter Last Name" {...field} />
                     </FormControl>
                     <FormMessage /></>:<span  className="text-primary">{lastName}</span>}
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="Location"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Location</FormLabel>
+                    {editing?<><FormControl>
+                      <ChooseLocation
+                        value={field.value}
+                        onSelect={field.onChange}
+                      />
+                    </FormControl>
+                    <FormMessage /></>:<Label  className="text-primary">{location}</Label>}
                   </FormItem>
                 )}
               />
