@@ -170,7 +170,7 @@ interface ChooseSkillProps {
     onSelect: (value: string) => void;
   }
   
-export function ChooseSkill({ value, onSelect }: ChooseSkillProps) {
+export function ChooseSkill({ value, onSelect}: ChooseSkillProps) {
   const [open, setOpen] = React.useState(false)
   return (
     <Popover open={open} onOpenChange={setOpen}>

@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { transformSkill } from "@/Hooks/projectTitleForGithub";
-import YouTube from "react-youtube";
-import ReactPlayer from "react-player/youtube";
 import { VideoCard } from "./VideoCard";
 // Interface for video data (customize as needed)
 interface YoutubeVideo {
@@ -57,7 +55,7 @@ const YoutubeSearch = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [skill, setSkill] = useState<string | null>(null);
-  const apiKey = "AIzaSyBo1qW_M9HpkA35IB0DKJ1FYUSR2_lmRBM"; // Replace with your API key
+  const apiKey = "AIzaSyBo1qW_M9HpkA35IB0DKJ1FYUSR2_lmRBM";
 
   useEffect(() => {
     const handleSubmit = async (myskill: string) => {
