@@ -44,7 +44,9 @@ interface User {
   newUser: boolean;
   location: string | undefined;
 }
+import { useToast } from "@/components/ui/use-toast"
 export default function Page() {
+  const { toast } = useToast()
   const [newuser, setNewUser] = useState(false);
   const [saving, setSaving] = React.useState(false);
   const [editing, setEditing] = React.useState(false);
@@ -97,6 +99,11 @@ export default function Page() {
       form.reset();
       setSaving(false);
       setEditing(false);
+      toast({
+        variant:"default",
+        title: "Notification",
+        description: "Profile Updated",
+      })
       window.location.reload();
     } catch (error) {
       setSaving(false);

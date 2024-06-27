@@ -13,7 +13,7 @@ export const PostFormSchema=z.object({
 })
 
 export const MailFormSchema=z.object({
-    Email:z.string().min(1,{message:"Length should be greater than 1"}),
-    Name:z.string().min(1,{message:"Length should be greater than 1"}),
-    Issue:z.string().min(1,{message:"Length should be greater than 1"})
+    email:z.string().min(1,{message:"Length should be greater than 1"}),
+    name:z.string().min(1,{message:"Length should be greater than 1"}),
+    issue:z.string().min(1,{message:"Length should be greater than 1"})
 })

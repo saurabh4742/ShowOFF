@@ -10,8 +10,8 @@ import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/BasicNav/Navbar";
-import { Toaster } from "react-hot-toast";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -35,7 +35,7 @@ export default function RootLayout({
           "min-h-screen w-full relative flex-col gap-2 font-sans antialiased",
           fontSans.variable
         )}>
-          <Toaster />
+          <Toaster/>
           <Navbar/>
         {children}
       </body>
