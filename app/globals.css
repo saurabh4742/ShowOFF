@@ -50,7 +50,9 @@
   }
 }
 
-
+  .cl-internal-180wb59{
+    visibility: hidden;
+  }
   @layer base {
     * {
       @apply border-border;
