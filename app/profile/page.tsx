@@ -122,12 +122,13 @@ export default function Page() {
           <CardHeader className="font-semibold w-full justify-center flex items-center">
             
           <Button
+          variant="secondary"
                 onClick={() => {
                   setEditing(false);
                 }}
                 className="flex justify-center sm:w-8/12 rounded-none w-full items-center gap-2"
               >
-                Switch to View <Eye />
+                Switch to View 
               </Button>
           </CardHeader>
           <CardContent>
