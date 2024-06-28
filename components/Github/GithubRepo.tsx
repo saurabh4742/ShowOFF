@@ -73,7 +73,7 @@ const GithubRepoSearch: React.FC = () => {
   }, [skill]);
 
   return (
-    <div className="flex justify-center mt-2 items-center" >
+    <div className="flex flex-col justify-center mt-2 items-center  " >
       {isLoading && (
         <svg
           aria-hidden="true"
@@ -94,7 +94,7 @@ const GithubRepoSearch: React.FC = () => {
       )}
       {error && <p>Error: {error}</p>}
       {repositories.length > 0 && (
-        <ul className="space-y-2">
+        <ul className="space-y-2 max-w-[100vw]">
           {repositories.map((repo) => (
             <li key={repo.id}>
               <HoverCardDemo repo={repo} />

@@ -3,7 +3,7 @@ import React from 'react'
 
 const Page = () => {
   return (
-    <div className='flex justify-center items-center min-h-[80vh]'>
+    <div className='flex justify-center items-center  min-h-[80vh]'>
       <GithubRepoSearch/>
     </div>
   )

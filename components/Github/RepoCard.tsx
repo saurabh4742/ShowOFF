@@ -27,14 +27,14 @@ export const HoverCardDemo: FC<HoverCardDemoProps> = ({ repo }) => {
   const router = useRouter();
   const truncatedDescription = truncateText(repo.description, 80);
   return (
-    <Card className="p-2">
+    <Card className="p-2 ">
       <CardContent>
         <div>
           <Avatar>
             <AvatarImage src={repo.owner.avatar_url} />
             <AvatarFallback>{repo.owner.login[0]}</AvatarFallback>
           </Avatar>
-          <div className="space-y-2">
+          <div className="space-y-2 w-full">
             <h4 className="text-sm font-semibold">@{repo.owner.login}</h4>
             <p className="text-sm ">{truncatedDescription}</p>
             <div className="flex items-center pt-2">
