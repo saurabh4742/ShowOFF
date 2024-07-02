@@ -33,6 +33,7 @@ import { MailFormSchema } from "@/ZodSchema/zodSchema";
 import axios from "axios";
 import { Paperclip } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast"
+import { SingleUploader } from "@/components/uploadthing/test";
 const Page = () => {
   const { toast } = useToast()
   const [sending, setSending] = React.useState(false);
@@ -162,7 +163,9 @@ const Page = () => {
 
         <CardFooter className="flex-col w-full gap-2 justify-center"></CardFooter>
         <CardDescription className=" flex justify-center"></CardDescription>
+        <SingleUploader/>
       </Card>
+      
     </div>
   );
 };

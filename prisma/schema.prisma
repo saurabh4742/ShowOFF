@@ -29,6 +29,7 @@ model Post{
   user        User     @relation(fields: [clerkuserId], references: [clerkUserId], name: "UserPosts", onDelete: Cascade) 
   comment     String
   imageUrl    String
+  imageFileUrl String?
   FirstName   String?
   LastName    String?
   createdAt   DateTime  @default(now())

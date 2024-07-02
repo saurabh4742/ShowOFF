@@ -3,13 +3,27 @@ import { db } from "@/utils/prismadb";
 import { NextResponse,NextRequest } from "next/server";
 export async function POST(req:NextRequest) {
     try {
-        const {Comment}=await req.json();
+        const {Comment,fileurl}=await req.json();
         const user = await currentUser();
         if(user?.id){
             const existinguser=await db.user.findFirst({where:{
                 clerkUserId:user.id
             }})
             if(existinguser){
+                if(fileurl){
+                await db.post.create({
+                    data:{
+                        comment:Comment,
+                        FirstName:existinguser.FirstName,
+                        LastName:existinguser.LastName,
+                        imageUrl:existinguser.imageUrl,
+                        clerkuserId:user.id,
+                        imageFileUrl:fileurl,
+                        Type:"Global"
+                    }
+                })
+            }
+            else{
                 await db.post.create({
                     data:{
                         comment:Comment,
@@ -20,6 +34,7 @@ export async function POST(req:NextRequest) {
                         Type:"Global"
                     }
                 })
+            }
                 return NextResponse.json({message:"POST Created"},{status:200})
             }
         }

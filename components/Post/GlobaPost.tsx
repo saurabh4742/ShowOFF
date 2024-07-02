@@ -11,6 +11,7 @@ interface Post {
     FirstName?: string;
     LastName?: string;
     createdAt: Date;
+    imageFileUrl?:string
   }
   
 const GlobalPost: React.FC = () => {
@@ -27,7 +28,6 @@ const GlobalPost: React.FC = () => {
         const response = await axios.get(
           '/api/global'
         );
-        console.log(response.data.post);
         setPosts(response.data.post);
       } catch (error) {
         setError("catch run");

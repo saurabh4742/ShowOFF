@@ -11,6 +11,7 @@ interface Post {
   FirstName?: string;
   LastName?: string;
   createdAt: Date;
+  imageFileUrl?:string
 }
   
 const MyPost: React.FC = () => {
@@ -27,7 +28,6 @@ const MyPost: React.FC = () => {
         const response = await axios.get(
           '/api/post'
         );
-        console.log(response.data.post);
         setPosts(response.data.post);
       } catch (error) {
         setError("catch run");

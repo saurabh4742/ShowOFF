@@ -1,13 +1,13 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { useDropzone } from "@uploadthing/react";
+import { useCallback } from "react";
+import { generateClientDropzoneAccept } from "uploadthing/client";
+import { UploadButton, useUploadThing } from "@/utils/uploadthings";
 import { Textarea } from "@/components/ui/textarea";
 import React, { useEffect, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   Tooltip,
   TooltipContent,
@@ -30,7 +30,23 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axios from "axios";
 import { CornerDownLeft, Mic, Paperclip, SendHorizontal } from "lucide-react";
+import Loader from "../Loader";
+import { ShieldAlert } from 'lucide-react';
 export default function CreatePost() {
+  const [file, setFile] = useState<File | null>(null);
+  const [removing, setRemoving] = useState(false);
+  const [fileurl, setFileUrl] = useState<string | undefined>(undefined);
+  const clearImage = async () => {
+    if (fileurl) {
+      setRemoving(true);
+      const res = await axios.post("/api/utapi", { fileurl });
+      if (res.data.success) {
+        setFile(null);
+        setFileUrl(undefined);
+      }
+      setRemoving(false);
+    }
+  };
   const [saving, setSaving] = React.useState(false);
   const form = useForm<z.infer<typeof PostFormSchema>>({
     resolver: zodResolver(PostFormSchema),
@@ -41,10 +57,11 @@ export default function CreatePost() {
   async function onSubmit(values: z.infer<typeof PostFormSchema>) {
     try {
       const { Comment } = values;
-      console.log(values);
       setSaving(true);
+
       const res = await axios.post("/api/post", {
         Comment,
+        fileurl,
       });
       form.reset();
       setSaving(false);
@@ -56,7 +73,7 @@ export default function CreatePost() {
   }
   return (
     <Form {...form}>
-      <form 
+      <form
         onSubmit={form.handleSubmit(onSubmit)}
         className=" w-full p-5 space-y-3 shadow-lg rounded-lg "
       >
@@ -82,21 +99,60 @@ export default function CreatePost() {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Paperclip className="size-4" />
-                  <span className="sr-only">Attach file</span>
-                </Button>
+                {!fileurl ? (
+                  <UploadButton
+                    endpoint="imageUploader"
+                    appearance={{
+                      button:
+                        "ut-ready:bg-reen-500 ut-uploading:cursor-not-allowed rounded-sm p-2   w-fit  after:bg-orange-400",
+                      container: "rounded-lg border-cyan-300 bg-slate-800",
+                      allowedContent: "hidden",
+                    }}
+                    content={{
+                      button({ ready }) {
+                        if (ready) return <Paperclip className="size-4" />;
+
+                        return <ShieldAlert />;
+                      },
+                      allowedContent({ ready, fileTypes, isUploading }) {
+                        if (!ready) return "";
+                        if (isUploading) return "wait";
+                        return ``;
+                      },
+                    }}
+                    onClientUploadComplete={(res) => {
+                      // Do something with the response
+                      console.log("Files: ", res[0].serverData.fileUrl);
+                      alert("Upload Completed");
+                      setFileUrl(res[0].serverData.fileUrl);
+                    }}
+                    onUploadError={(error: Error) => {
+                      // Do something with the error.
+                      alert(`ERROR! ${error.message}`);
+                    }}
+                  />
+                ) : (
+                  <div className="flex h-12 w-12  relative">
+                    {removing ? (
+                      <Loader />
+                    ) : (
+                      <>
+                        <button
+                          onClick={clearImage}
+                          className="absolute z-10 top-[-7px] right-1 shadow-lg tex-sm text-primary"
+                        >
+                          x
+                        </button>
+                        <Avatar className=" w-10 h-10 shadow-lg rounded-lg">
+                          <AvatarImage src={fileurl} />
+                          <AvatarFallback>S</AvatarFallback>
+                        </Avatar>
+                      </>
+                    )}
+                  </div>
+                )}
               </TooltipTrigger>
               <TooltipContent side="top">Attach File</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Mic className="size-4" />
-                  <span className="sr-only">Use Microphone</span>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="top">Use Microphone</TooltipContent>
             </Tooltip>
           </TooltipProvider>
 

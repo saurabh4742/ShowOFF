@@ -12,6 +12,7 @@ interface Post {
   FirstName?: string;
   LastName?: string;
   createdAt: Date;
+  imageFileUrl?:string
 }
 interface PostPromp {
   post: Post;
@@ -28,6 +29,9 @@ export const GlobalPostCard: FC<PostPromp> = ({ post }) => {
           </Avatar>
           <div className="space-y-2">
             <h4 className="text-sm font-semibold">@{post.FirstName && post.LastName && post.FirstName+"_"+post.LastName}</h4>
+            {post.imageFileUrl && <Avatar className="w-60  rounded-none h-60 ">
+              <AvatarImage src={post.imageFileUrl}/>
+            </Avatar>}
             <p className="text-sm">{post.comment}</p>
             <div className="flex items-center pt-2">
               <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
