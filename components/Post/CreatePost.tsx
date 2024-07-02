@@ -121,14 +121,9 @@ export default function CreatePost() {
                       },
                     }}
                     onClientUploadComplete={(res) => {
-                      // Do something with the response
-                      console.log("Files: ", res[0].serverData.fileUrl);
-                      alert("Upload Completed");
                       setFileUrl(res[0].serverData.fileUrl);
                     }}
                     onUploadError={(error: Error) => {
-                      // Do something with the error.
-                      alert(`ERROR! ${error.message}`);
                     }}
                   />
                 ) : (
