@@ -33,7 +33,6 @@ import { CornerDownLeft, Mic, Paperclip, SendHorizontal } from "lucide-react";
 import Loader from "../Loader";
 import { ShieldAlert } from 'lucide-react';
 export default function CreatePost() {
-  const [file, setFile] = useState<File | null>(null);
   const [removing, setRemoving] = useState(false);
   const [fileurl, setFileUrl] = useState<string | undefined>(undefined);
   const clearImage = async () => {
@@ -41,7 +40,6 @@ export default function CreatePost() {
       setRemoving(true);
       const res = await axios.post("/api/utapi", { fileurl });
       if (res.data.success) {
-        setFile(null);
         setFileUrl(undefined);
       }
       setRemoving(false);

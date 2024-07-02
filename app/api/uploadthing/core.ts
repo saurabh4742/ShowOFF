@@ -23,6 +23,22 @@ export const ourFileRouter = {
         
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       return { fileUrl:file.url };
+    }),
+    attachment:f({ image: { maxFileSize: "4MB" },audio:{maxFileSize:"128MB"},video:{maxFileSize:"128MB"},pdf:{maxFileSize:"16MB"},text:{maxFileSize:"16MB"} })
+    // Set permissions and file types for this FileRoute
+    .middleware(async ({ req }) => {
+      // This code runs on your server before upload
+      // Whatever is returned here is accessible in onUploadComplete as `metadata`
+      return { clerkUserId: "something" };
+    })
+    .onUploadComplete(async ({ metadata, file }) => {
+      // This code RUNS ON YOUR SERVER after upload
+      console.log("Upload complete for userId:", metadata.clerkUserId);
+ 
+      console.log("file url", file.url);
+        
+      // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
+      return { fileUrl:file.url };
     })
 } satisfies FileRouter;
  

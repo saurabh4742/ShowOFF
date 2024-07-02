@@ -1,6 +1,6 @@
 "use client"
 import { Textarea } from "@/components/ui/textarea";
-import React from "react";
+import React, { useState } from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -14,7 +14,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { SendHorizontal } from 'lucide-react';
+import { SendHorizontal, ShieldAlert } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -34,9 +34,23 @@ import axios from "axios";
 import { Paperclip } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast"
 import { SingleUploader } from "@/components/uploadthing/test";
+import { UploadButton } from "@/utils/uploadthings";
+import Loader from "@/components/Loader";
 const Page = () => {
   const { toast } = useToast()
+  const [removing, setRemoving] = useState(false);
+  const [fileurl, setFileUrl] = useState<string | undefined>(undefined);
   const [sending, setSending] = React.useState(false);
+  const clearImage = async () => {
+    if (fileurl) {
+      setRemoving(true);
+      const res = await axios.post("/api/utapi", { fileurl });
+      if (res.data.success) {
+        setFileUrl(undefined);
+      }
+      setRemoving(false);
+    }
+  };
   const form = useForm<z.infer<typeof MailFormSchema>>({
     resolver: zodResolver(MailFormSchema),
     defaultValues: {
@@ -54,6 +68,7 @@ const Page = () => {
         email,
         name,
         issue,
+        fileurl
       });
       form.reset();
       setSending(false);
@@ -64,7 +79,11 @@ const Page = () => {
       })
     } catch (error) {
       setSending(false);
-      console.log("error");
+      toast({
+        variant:"destructive",
+        title: "Notification",
+        description: "Mail could not sent ",
+      })
     }
   }
   return (
@@ -116,14 +135,53 @@ const Page = () => {
             </FormItem>
           )}
         />
-        <div className="flex items-center p-3 pt-0">
+        <div className="flex items-center gap-2 p-3 pt-0">
           <TooltipProvider>
-            <Tooltip>
+          <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Paperclip className="size-4" />
-                  <span className="sr-only">Attach file</span>
-                </Button>
+                {!fileurl ? (
+                  <UploadButton
+                    endpoint="attachment"
+                    appearance={{
+                      button:
+                        "ut-ready:bg-reen-500 ut-uploading:cursor-not-allowed rounded-sm p-2   w-fit  after:bg-orange-400",
+                      container: "rounded-lg border-cyan-300 bg-slate-800",
+                      allowedContent: "hidden",
+                    }}
+                    content={{
+                      button({ ready }) {
+                        if (ready) return <Paperclip className="size-4" />;
+
+                        return <ShieldAlert />;
+                      },
+                      allowedContent({ ready, fileTypes, isUploading }) {
+                        if (!ready) return "";
+                        if (isUploading) return "wait";
+                        return ``;
+                      },
+                    }}
+                    onClientUploadComplete={(res) => {
+                      setFileUrl(res[0].serverData.fileUrl);
+                    }}
+                    onUploadError={(error: Error) => {
+                    }}
+                  />
+                ) : (
+                  <div className="flex h-12 w-12  relative">
+                    {removing ? (
+                      <Loader />
+                    ) : (
+                      <>
+                        <button
+                          onClick={clearImage}
+                          className="absolute h-full w-full z-10 right-1 shadow-lg tex-sm text-primary"
+                        >
+                          x
+                        </button>
+                      </>
+                    )}
+                  </div>
+                )}
               </TooltipTrigger>
               <TooltipContent side="top">Attach File</TooltipContent>
             </Tooltip>
@@ -163,7 +221,6 @@ const Page = () => {
 
         <CardFooter className="flex-col w-full gap-2 justify-center"></CardFooter>
         <CardDescription className=" flex justify-center"></CardDescription>
-        <SingleUploader/>
       </Card>
       
     </div>
