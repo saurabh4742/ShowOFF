@@ -23,12 +23,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PersonalDetailFormSchema } from "@/ZodSchema/zodSchema";
 import { z } from "zod";
 import axios from "axios";
-import toast from "react-hot-toast";
 import { ChooseSkill } from "@/components/ChooseSkill";
-import { Check, Edit2, Eye, UserRoundCheck } from "lucide-react";
-import { useUser } from "@clerk/nextjs";
-import { ImGithub, ImLinkedin } from "react-icons/im";
-import { Label } from "@/components/ui/label";
+import { Check } from "lucide-react";
 import { ChooseLocation } from "@/components/ChooseLocation";
 import Profile from "@/components/Profile";
 interface User {

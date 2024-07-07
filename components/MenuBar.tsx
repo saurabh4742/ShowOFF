@@ -90,6 +90,13 @@ export function MenuBar() {
               <Earth className="mr-2 h-4 w-4" />
               <span className="mr-2">Global Feed</span>
             </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                router.push("/members");
+              }}
+            >
+              <span className="mr-2">Members</span>
+            </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
