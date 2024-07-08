@@ -1,50 +1,33 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { MemberCard } from "./MemberCard";
+import { FollowerCard } from "@/components/Followers/FollowerCard";
+import { useParams } from "next/navigation";
 
-interface User {
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  clerkUserId: string | undefined;
-  FirstName: string | undefined;
-  LastName: string | undefined;
-  SKill: string | undefined;
-  LinkdinId: string | undefined;
-  GithubId: string | undefined;
-  newUser: boolean;
-  imageUrl: string;
-  location: string | undefined;
-  followers: Follower[];
-  followings: Following[];
-}
 
 interface Follower {
-  id: string;
-  clerkuserId: string;
-  followedAt: Date;
-  imageUrl: string;
+  followerId: string
+    id: string;
+    userId: string;
+    followedAt: Date;
+    imageUrl: string;
+    FirstName: string | undefined;
+    LastName: string | undefined;
+    SKill:string | undefined
 }
-interface Following {
-  id: string;
-  clerkuserId: string;
-  followedAt: Date;
-  imageUrl: string;
-}
-const AllMemebers: React.FC = () => {
-  const [members, setMembers] = useState<User[]>([]);
+const Page= () => {
+  const [follower, setfollower] = useState<Follower[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const id = useParams<{ id:string  }>().id
   useEffect(() => {
     const handleSubmit = async () => {
       setIsLoading(true);
       setError("");
-
+      console.log(id)
       try {
-        const response = await axios.get("/api/members");
-        setMembers(response.data.member);
+        const response = await axios.get(`/api/member/followers`,{params:{id}});
+        setfollower(response.data.followers);
       } catch (error) {
         setError("catch run");
       } finally {
@@ -53,10 +36,11 @@ const AllMemebers: React.FC = () => {
     };
     handleSubmit();
     // Optional: Code to fetch trending Memebersitories on initial render can be placed here
-  }, []);
+  }, [id]);
 
   return (
-    <div className="flex justify-center w-full mt-2 items-center">
+    <div className=" flex justify-center items-center mt-2">
+      <div className="flex justify-center w-full mt-2 items-center">
       {isLoading && (
         <svg
           aria-hidden="true"
@@ -76,18 +60,19 @@ const AllMemebers: React.FC = () => {
         </svg>
       )}
       {error && <p>Error: {error}</p>}
-      {members.length > 0 && (
-        <ul className="space-y-2 sm:w-4/12 w-full">
-          {members.map((member) => (
-            <li key={member.id}>
-              <MemberCard member={member} />
+      {follower.length > 0 && (
+        <ul className="space-y-2 sm:w-4/12">
+          {follower.map((follower) => (
+            <li key={follower.id}>
+              <FollowerCard  follower={follower} />
             </li>
           ))}
         </ul>
       )}
-      {members.length === 0 && !isLoading && <p>No Memebers found.</p>}
+      {follower.length === 0 && !isLoading && <p>No Followers found.</p>}
+    </div>
     </div>
   );
 };
 
-export default AllMemebers;
+export default Page;

@@ -49,7 +49,30 @@
     --ring: 224.3 76.3% 48%;
   }
 }
+  
+::-webkit-scrollbar {
+  width: 6px;
+  height: 2px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2563EB;
+  border-radius: 25px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+ 
+  background: #F59E0B;
+  border-radius: 25px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  padding: 20px;
+  background: #2563EB;
+}
   .cl-internal-180wb59{
     visibility: hidden;
   }

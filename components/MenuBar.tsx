@@ -10,6 +10,7 @@ import {
   Settings,
   Trash2,
   User,
+  Users,
   Zap,
 } from "lucide-react";
 
@@ -29,6 +30,7 @@ import {
   SignOutButton,
   SignedIn,
   SignedOut,
+  useClerk,
   useUser,
 } from "@clerk/nextjs";
 import { motion } from "framer-motion";
@@ -37,6 +39,7 @@ import ProfileCompletedOrNotWarn from "./ProfileCompletedOrNotWarn";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ImYoutube } from "react-icons/im";
 export function MenuBar() {
+  const { signOut} = useClerk();
   const {user}=useUser();
   const router = useRouter();
   return (
@@ -92,9 +95,9 @@ export function MenuBar() {
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => {
-                router.push("/members");
+                router.push("/member");
               }}
-            >
+            ><Users className="mr-2 h-4 w-4" />
               <span className="mr-2">Members</span>
             </DropdownMenuItem>
           </DropdownMenuGroup>
@@ -114,7 +117,7 @@ export function MenuBar() {
               }}
             >
               <Github className="mr-2 h-4 w-4" />
-              <span className="mr-2">Github repositories</span>
+              <span className="mr-2">Repositories</span>
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => {
@@ -122,7 +125,7 @@ export function MenuBar() {
               }}
             >
               <ImYoutube className="mr-2 h-4 w-4" />
-              <span className="mr-2">Youtube videos</span>
+              <span className="mr-2">Projects</span>
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </SignedIn>
@@ -155,11 +158,11 @@ export function MenuBar() {
           </SignedOut>
           <SignedIn>
             <LogOut className="mr-2 h-4 w-4" />
-            <motion.div
+            <motion.div onClick={() => signOut({ redirectUrl: '/' })}
               className="w-fit h-fit"
               whileHover={{ scale: [1.1, 1.2, 1.1] }}
             >
-              <SignOutButton />
+              Sign out
             </motion.div>
           </SignedIn>
         </DropdownMenuItem>

@@ -142,9 +142,9 @@ const Profile: React.FC<ChildComponentProps> = ({ editing, setEditing }) => {
                     <Label>
                       <Milestone />
                     </Label>
-                    <span className="text-xs ">
-                      Total posts
-                      {totalpost}
+                    <span className="text-xs  ">
+                      Total posts <span>{totalpost}</span>
+                      
                     </span>
                   </div>
                   <div className="flex  gap-2 items-center">

@@ -39,17 +39,25 @@ model Post {
 }
 
 model Follower {
-  id          String   @id @default(cuid()) @map("_id")
-  FollowedAt  DateTime @default(now())
-  imageUrl    String
-  clerkuserId String
-  user        User     @relation(fields: [clerkuserId], references: [clerkUserId], name: "Followers", onDelete: Cascade)
+  id         String   @id @default(cuid()) @map("_id")
+  followedAt DateTime @default(now())
+  followerId String
+  imageUrl   String
+  userId     String
+  FirstName   String?
+  SKill       String?
+  LastName    String?
+  user       User     @relation(fields: [userId], references: [id], name: "Followers", onDelete: Cascade)
 }
 
 model Following {
   id          String   @id @default(cuid()) @map("_id")
-  FollowedAt  DateTime @default(now())
+  followedAt  DateTime @default(now())
+  followingId String
   imageUrl    String
-  clerkuserId String
-  user        User     @relation(fields: [clerkuserId], references: [clerkUserId], name: "Following", onDelete: Cascade)
+  userId      String
+  FirstName   String?
+  LastName    String?
+  SKill       String?
+  user        User     @relation(fields: [userId], references: [id], name: "Following", onDelete: Cascade)
 }
