@@ -4,9 +4,9 @@ import {
   SignInButton,
   SignedIn,
   SignedOut,
-  UserButton
-} from '@clerk/nextjs'
-import { Inter as FontSans } from "next/font/google"
+  UserButton,
+} from "@clerk/nextjs";
+import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/BasicNav/Navbar";
@@ -16,7 +16,7 @@ import { Toaster } from "@/components/ui/toaster";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
-})
+});
 
 export const metadata: Metadata = {
   title: "ShowOFF",
@@ -30,16 +30,18 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html lang='en'>
-      <body className={cn(
-          "min-h-screen  w-full relative  flex-col gap-2 font-sans antialiased",
-          fontSans.variable
-        )}>
-          <Toaster/>
-          <Navbar/>
-        {children}
-      </body>
-    </html>
-  </ClerkProvider>
+      <html lang="en">
+        <body
+          className={cn(
+            "min-h-screen  w-full relative flex-col gap-2 font-sans antialiased",
+            fontSans.variable
+          )}
+        >
+            <Toaster />
+            <Navbar />
+            {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

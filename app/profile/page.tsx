@@ -40,9 +40,9 @@ interface User {
   newUser: boolean;
   location: string | undefined;
 }
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/components/ui/use-toast";
 export default function Page() {
-  const { toast } = useToast()
+  const { toast } = useToast();
   const [newuser, setNewUser] = useState(false);
   const [saving, setSaving] = React.useState(false);
   const [editing, setEditing] = React.useState(false);
@@ -58,7 +58,8 @@ export default function Page() {
       try {
         const res = await axios.get("/api/getprofile");
         const user: User = res.data.user;
-        setNewUser(user.newUser);      } catch (error) {
+        setNewUser(user.newUser);
+      } catch (error) {
         console.log(error);
       }
     }
@@ -96,10 +97,10 @@ export default function Page() {
       setSaving(false);
       setEditing(false);
       toast({
-        variant:"default",
+        variant: "default",
         title: "Notification",
         description: "Profile Updated",
-      })
+      });
       window.location.reload();
     } catch (error) {
       setSaving(false);
@@ -116,16 +117,15 @@ export default function Page() {
       ) : (
         <Card className="sm:w-3/12 w-full m-2  ">
           <CardHeader className="font-semibold w-full justify-center flex items-center">
-            
-          <Button
-          variant="secondary"
-                onClick={() => {
-                  setEditing(false);
-                }}
-                className="flex justify-center sm:w-8/12 rounded-none w-full items-center gap-2"
-              >
-                Switch to View 
-              </Button>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                setEditing(false);
+              }}
+              className="flex justify-center sm:w-8/12 rounded-none w-full items-center gap-2"
+            >
+              Switch to View
+            </Button>
           </CardHeader>
           <CardContent>
             <Form {...form}>

@@ -16,6 +16,7 @@ import {
   Flame,
   Linkedin,
   MapPin,
+  MessageCircleMore,
   User,
 } from "lucide-react";
 interface User {
@@ -167,6 +168,12 @@ const Page= () => {
               >
                {followloading? <Loader/>:"Follow"}
               </Button>}
+              <Button onClick={()=>{
+                router.push(`/member/${params.id}/chat`)
+              }}  className="bg-[#F59E0B] rounded-none flex gap-1 my-2 px-16 "
+              >
+               <MessageCircleMore/> Message 
+              </Button>
             <CardContent>
               <div className="sm:flex flex-col justify-evenly gap-4  items-center ">
                 

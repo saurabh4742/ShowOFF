@@ -61,3 +61,12 @@ model Following {
   SKill       String?
   user        User     @relation(fields: [userId], references: [id], name: "Following", onDelete: Cascade)
 }
+
+model Chat{
+    id          String   @id @default(cuid()) @map("_id")
+    sender      String
+    receiver    String
+    message     String?
+    attachmentUrl   String?
+    sentAt DateTime @default(now())
+}

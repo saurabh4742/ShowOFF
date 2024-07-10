@@ -11,7 +11,7 @@ const Navbar = () => {
   const opacity = useTransform(x, [-100, 0, 100], [0, 1, 0]);
   const router = useRouter();
   return (
-    <div className="bg-background text-center shadow-lg rounded-b-xl flex items-center gap-1  sm:p-4 p-2 w-full justify-between ">
+    <div className="text-center shadow-lg rounded-b-xl flex items-center gap-1  sm:p-4 p-2 w-full justify-between ">
       <motion.span
         onClick={() => {
           router.push("/");
