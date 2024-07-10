@@ -37,7 +37,11 @@ const ChatMain: React.FC = () => {
       socket.on("online_status", (status) => {
         setOnlineStatus(status);
       });
-      socket.on("user_disconnected", (data: { userId: string }) => {});
+      socket.on("user_online_status", (data: {userId: string, status: boolean}) => {
+        if (data.userId === id) {
+          setOnlineStatus(data.status);
+        }
+      });
     }
 
     return () => {
