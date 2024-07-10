@@ -66,7 +66,7 @@ export default function ChatSection({
         <div className="flex flex-col justify-center items-center gap-1 border-b bg-muted/40 p-4">
           <div
             className={`rounded-full shadow-lg relative ${
-              onlineStatus && `bg-primary p-0.5`
+              onlineStatus && `bg-green-500 p-0.5`
             } `}
           >
             <Avatar>
