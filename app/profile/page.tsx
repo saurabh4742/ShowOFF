@@ -26,7 +26,6 @@ import axios from "axios";
 import { ChooseSkill } from "@/components/ChooseSkill";
 import { Check } from "lucide-react";
 import { ChooseLocation } from "@/components/ChooseLocation";
-import Profile from "@/components/Profile";
 interface User {
   id: string;
   createdAt: Date;
@@ -41,6 +40,7 @@ interface User {
   location: string | undefined;
 }
 import { useToast } from "@/components/ui/use-toast";
+import NewProfile from "@/components/ProfilePages/NewProfile";
 export default function Page() {
   const { toast } = useToast();
   const [newuser, setNewUser] = useState(false);
@@ -109,25 +109,22 @@ export default function Page() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[80vh] my-4  ">
+    <div className="flex flex-col items-center justify-center my-1  ">
       {!editing ? (
         <>
-          <Profile editing={editing} setEditing={setEditing} />
+          <NewProfile editing={editing} setEditing={setEditing}/>
         </>
       ) : (
-        <Card className="sm:w-3/12 w-full m-2  ">
-          <CardHeader className="font-semibold w-full justify-center flex items-center">
+        <div className=" sm:w-6/12 w-full flex flex-col gap-4">
             <Button
               variant="secondary"
               onClick={() => {
                 setEditing(false);
               }}
-              className="flex justify-center sm:w-8/12 rounded-none w-full items-center gap-2"
+              className="flex justify-center  rounded-none w-full items-center gap-2"
             >
               Switch to View
             </Button>
-          </CardHeader>
-          <CardContent>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -214,7 +211,7 @@ export default function Page() {
                 <div className="flex w-full justify-center">
                   <Button
                     disabled={saving}
-                    className="w-full"
+                    className="w-full  rounded-none"
                     size="lg"
                     type="submit"
                   >
@@ -250,11 +247,7 @@ export default function Page() {
                 </div>
               </form>
             </Form>
-          </CardContent>
-
-          <CardFooter className="flex-col w-full gap-2 justify-center"></CardFooter>
-          <CardDescription className=" flex justify-center"></CardDescription>
-        </Card>
+            </div>
       )}
     </div>
   );

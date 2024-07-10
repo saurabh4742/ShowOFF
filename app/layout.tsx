@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
 import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
+  ClerkProvider
 } from "@clerk/nextjs";
-import { Inter as FontSans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import Navbar from "@/components/BasicNav/Navbar";
-import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
+import NewResponsiveNav from "@/components/BasicNav/NewResponsiveNav";
 
-const fontSans = FontSans({
+const fontHeading = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+  display: "swap",
+  variable: "--font-heading",
+});
+
+const fontBody = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
 });
 
 export const metadata: Metadata = {
@@ -33,13 +35,15 @@ export default function RootLayout({
       <html lang="en">
         <body
           className={cn(
-            "min-h-screen  w-full relative flex-col gap-2 font-sans antialiased",
-            fontSans.variable
+            "h-screen w-full relative flex-col gap-2  antialiased",
+            "antialiased",
+            fontHeading.variable,
+            fontBody.variable
           )}
         >
-            <Toaster />
-            <Navbar />
-            {children}
+          <Toaster />
+          <NewResponsiveNav/>
+          {children}
         </body>
       </html>
     </ClerkProvider>

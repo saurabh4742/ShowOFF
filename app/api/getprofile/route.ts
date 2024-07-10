@@ -7,6 +7,7 @@ export async function GET(req: NextRequest) {
     if (user?.id) {
       const existinguser = await db.user.findFirst({
         select: {
+          id:true,
           posts: true,
           imageUrl: true,
           FirstName: true,
@@ -16,7 +17,9 @@ export async function GET(req: NextRequest) {
           newUser: true,
           GithubId: true,
           LinkdinId: true,
-          location:true
+          location:true,
+          followers:true,
+          followings:true
         },
         where: {
           clerkUserId: user.id,

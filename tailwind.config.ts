@@ -21,7 +21,8 @@ export default withUt({
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        heading: ['var(--font-heading)', ...fontFamily.sans],
+        body: ['var(--font-body)', ...fontFamily.sans]
       },
       colors: {
         border: "hsl(var(--border))",
