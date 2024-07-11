@@ -29,8 +29,10 @@ export default function MessagePage() {
         const res=await axios.get("/api/allchattedusers")
         const alluser:User[]=res.data.users
         setUser(alluser)
+        setIsLoading(false)
       } catch (error) {
         alert("error fetching messages")
+        setIsLoading(false)
       }
     }
     getAllChattedMember()
@@ -45,10 +47,12 @@ export default function MessagePage() {
     };
   }, [socket]);
 
-  if(!users){
-    return <div className="flex justify-center items-center"><Loader/></div>
+  if(isLoading){
+    return <div className="w-full flex justify-center items-center"><Loader/></div>
   }
-
+  else if(!users && !isLoading){
+    return <div className="w-full flex justify-center items-center">No conversation yet.</div>
+  }
   return (
     <div className="w-full h-full flex flex-col">
       <header className="bg-background px-4 py-3 border-b flex items-center justify-between md:px-6">
