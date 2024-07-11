@@ -52,8 +52,8 @@ const NewProfile: React.FC<ChildComponentProps> = ({ editing, setEditing }) => {
   const [lastName, setLastName] = useState<string | undefined>("");
   const [skill, setSkill] = useState<string | undefined>("");
   const [newUser, setNewUser] = useState(false);
-  const [linkedinId, setLinkedinId] = useState<string | undefined>("");
-  const [githubId, setGithubId] = useState<string | undefined>("");
+  // const [linkedinId, setLinkedinId] = useState<string | undefined>("");
+  // const [githubId, setGithubId] = useState<string | undefined>("");
   const [location, setLocation] = useState<string | undefined>("");
   const [imageUrl, setImageUrl] = useState<string | undefined>("");
   const [totalPost, setTotalPost] = useState<number | undefined>();
@@ -72,8 +72,8 @@ const NewProfile: React.FC<ChildComponentProps> = ({ editing, setEditing }) => {
         setId(user.id)
         setFirstName(user.FirstName);
         setLastName(user.LastName);
-        setGithubId(user.GithubId);
-        setLinkedinId(user.LinkdinId);
+        // setGithubId(user.GithubId);
+        // setLinkedinId(user.LinkdinId);
         setSkill(user.SKill);
         setNewUser(user.newUser);
         setLocation(user.location);

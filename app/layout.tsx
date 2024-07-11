@@ -3,9 +3,9 @@ import {
   ClerkProvider
 } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
+import {Toaster} from "react-hot-toast"
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Toaster } from "@/components/ui/toaster";
 import NewResponsiveNav from "@/components/BasicNav/NewResponsiveNav";
 import { SocketProvider } from "@/components/Context/SocketContext";
 
@@ -43,7 +43,7 @@ export default function RootLayout({
           )}
         >
           <SocketProvider>
-          <Toaster />
+          <Toaster/>
           <NewResponsiveNav/>
           {children}
           </SocketProvider>

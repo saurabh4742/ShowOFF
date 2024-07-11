@@ -54,7 +54,6 @@ const ChatMain: React.FC = () => {
         socket.off("Giving_old_chats");
         socket.off("online_status");
         socket.off("user-detail");
-        // socket.disconnect();
       }
     };
   }, [id, socket, user?.id]);

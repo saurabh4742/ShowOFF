@@ -44,8 +44,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 export default function NewResponsiveNav() {
   const { user } = useUser();
   return (
-    <div className="flex w-full flex-col bg-background">
-      <header className="flex h-16 items-center justify-between border-b bg-card px-4 md:px-6">
+    <div className="flex w-full flex-col bg-background  ">
+      <header className=" flex h-16 items-center justify-between border-b bg-card px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
           <span className="text-lg font-semibold text-primary">
             Show<span className="text-[#F59E0B]">OFF</span>
@@ -328,7 +328,6 @@ export default function NewResponsiveNav() {
           </NavigationMenuList>
         </NavigationMenu>
       </header>
-      <main className="flex-1 p-4 md:p-6" />
     </div>
   );
 }
