@@ -36,7 +36,7 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
       newSocket.on(
         "user_online_status",
         (data: { userId: string;imageUrl:string;username:string; clerkuserId:string;status: boolean }) => {
-          if (data.status && !(data.clerkuserId===user.id) && data.username && data.imageUrl) {
+          if (data.status && !(data.clerkuserId===user.id)) {
             toast.custom((t) => (
               <div
                 className={`${

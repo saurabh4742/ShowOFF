@@ -87,7 +87,7 @@ export default function ChatSection({
           </div>
           <h2 className="text-sm font-medium">{username}</h2>
         </div>
-        <ScrollArea ref={scrollAreaRef} className="flex-1 sm:max-h-96 max-h-80 relative sm:min-h-96 min-80 p-4">
+        <ScrollArea ref={scrollAreaRef} className="flex-1  relative max-h-[85vh] min-h-[85vh] p-4">
           {messages.map((message, index) => (
             <div
               key={message.id}
