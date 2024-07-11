@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 import { useUser } from '@clerk/nextjs';
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
@@ -35,7 +36,7 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
       newSocket.on(
         "user_online_status",
         (data: { userId: string;imageUrl:string;username:string; clerkuserId:string;status: boolean }) => {
-          if (data.status && data.clerkuserId!==user.id) {
+          if (data.status && !(data.clerkuserId===user.id) && data.username && data.imageUrl) {
             toast.custom((t) => (
               <div
                 className={`${
@@ -48,7 +49,7 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
                       <img
                         className="h-10 w-10 rounded-full"
                         src={data.imageUrl}
-                        alt=""
+                        alt="S"
                       />
                     </div>
                     <div className="ml-3 flex-1">
