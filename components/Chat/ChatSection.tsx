@@ -12,6 +12,7 @@ import {
 import { useParams } from "next/navigation";
 import { SendIcon, SmileIcon } from "lucide-react";
 import { EmojiPicker } from "./EmojiPicker";
+import { useSocket } from "../Context/SocketContext";
 interface MessageData {
   id: string;
   sender: string;
@@ -21,14 +22,12 @@ interface MessageData {
   sentAt: Date;
 }
 type ChatSectionProps = {
-  socket: any; // Replace with actual socket type
   username: string;
   imageUrl: string;
   onlineStatus: boolean;
   oldmessages: MessageData[];
 };
 export default function ChatSection({
-  socket,
   username,
   imageUrl,
   onlineStatus,
@@ -37,6 +36,7 @@ export default function ChatSection({
   const id = useParams<{ id: string }>().id;
   const inputRef = useRef<HTMLInputElement>(null);
   const [messages, setMessages] = useState<MessageData[]>([]);
+  const socket = useSocket();
   const [newMessage, setNewMessage] = useState("");
   useEffect(() => {
     if (oldmessages && oldmessages.length > 0) {
@@ -45,17 +45,19 @@ export default function ChatSection({
   }, [oldmessages]);
 
   useEffect(() => {
-    socket.on("receive_msg", (data: MessageData) => {
-      setMessages((prevMessages) => [...prevMessages, data]);
-    });
-
-    return () => {
-      socket.off("receive_msg");
-    };
+    if(socket){
+      socket.on("receive_msg", (data: MessageData) => {
+        setMessages((prevMessages) => [...prevMessages, data]);
+      });
+  
+      return () => {
+        socket.off("receive_msg");
+      };
+    }
   }, [socket, id]);
 
   const handleSendMessage = () => {
-    if (newMessage.trim() !== "") {
+    if (newMessage.trim() !== "" && socket) {
       socket.emit("send_msg", newMessage);
       setNewMessage("");
     }
@@ -65,8 +67,8 @@ export default function ChatSection({
       <div className="flex flex-col">
         <div className="flex flex-col justify-center items-center gap-1 border-b bg-muted/40 p-4">
           <div
-            className={`rounded-full shadow-lg relative ${
-              onlineStatus && `bg-green-500 p-0.5`
+            className={`rounded-full shadow-lg p-1 relative ${
+              onlineStatus ? `bg-green-500 `:`bg-red-500 `
             } `}
           >
             <Avatar>

@@ -18,6 +18,8 @@ import {
 import { JSX, SVGProps } from "react";
 import {
   BriefcaseBusiness,
+  Earth,
+  Fullscreen,
   Github,
   HomeIcon,
   LayoutDashboardIcon,
@@ -45,9 +47,9 @@ export default function NewResponsiveNav() {
     <div className="flex w-full flex-col bg-background">
       <header className="flex h-16 items-center justify-between border-b bg-card px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
-            <span className="text-lg font-semibold text-primary">
-              Show<span className="text-[#F59E0B]">OFF</span>
-            </span>
+          <span className="text-lg font-semibold text-primary">
+            Show<span className="text-[#F59E0B]">OFF</span>
+          </span>
         </Link>
         <Sheet>
           <SheetTrigger asChild>
@@ -67,13 +69,13 @@ export default function NewResponsiveNav() {
                   Show<span className="text-[#F59E0B]">OFF</span>
                 </span>
                 {user?.id && (
-              <Avatar>
-                <AvatarImage src={user.imageUrl} />
-                <AvatarFallback>
-                  {user.firstName && user.firstName[0]}
-                </AvatarFallback>
-              </Avatar>
-            )}
+                  <Avatar>
+                    <AvatarImage src={user.imageUrl} />
+                    <AvatarFallback>
+                      {user.firstName && user.firstName[0]}
+                    </AvatarFallback>
+                  </Avatar>
+                )}
               </Link>
               <SheetClose asChild>
                 <Button
@@ -94,22 +96,15 @@ export default function NewResponsiveNav() {
                 <HomeIcon className="h-5 w-5" />
                 Home
               </Link>
-              <Link
-                href="/dashboard"
-                className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-                prefetch={false}
-              >
-                <LayoutDashboardIcon className="h-5 w-5" />
-                Dashboard
-              </Link>
-<SignedIn>
-<Link
+              <SignedIn>
+                {/*here comes the extra */}
+                  <Link
                   href="/dashboard/jobs"
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
                   prefetch={false}
                 >
                   <BriefcaseBusiness className="h-5 w-5" />
-                  Jobs
+                  Apply for Jobs
                 </Link>
                 <Link
                   href="/dashboard/github"
@@ -127,21 +122,38 @@ export default function NewResponsiveNav() {
                   <ImYoutube className="h-5 w-5" />
                   Resources
                 </Link>
+                
+                <Link
+                  href="/dashboard/myposts"
+                  className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
+                  prefetch={false}
+                >
+                  <Fullscreen className="h-5 w-5" />
+                  My Posts
+                </Link>
+                <Link
+                  href="/dashboard/globe"
+                  className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
+                  prefetch={false}
+                >
+                  <Earth className="h-5 w-5" />
+                  Global
+                </Link>
                 <Link
                   href="/member"
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
                   prefetch={false}
                 >
                   <Users className="h-5 w-5" />
-                  Members
+                  Our Members
                 </Link>
                 <Link
-                  href="/dashboard/youtube"
+                  href="/messages"
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
                   prefetch={false}
                 >
                   <MessageCircleMore className="h-5 w-5" />
-                  Messages
+                  My Messages
                 </Link>
                 <Link
                   href="/profile"
@@ -151,7 +163,7 @@ export default function NewResponsiveNav() {
                   <SettingsIcon className="h-5 w-5" />
                   Profile
                 </Link>
-</SignedIn>
+              </SignedIn>
               <Link
                 href="/contact"
                 className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
@@ -184,27 +196,15 @@ export default function NewResponsiveNav() {
                 Home
               </Link>
             </NavigationMenuLink>
-<SignedIn>
-<NavigationMenuItem>
+            <SignedIn>
+              <NavigationMenuItem>
                 <NavigationMenuTrigger>
                   <span className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
-                    Features
+                    Dashboard
                   </span>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[200px] p-2">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href="/dashboard"
-                        className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                        prefetch={false}
-                      >
-                        <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
-                          <LayoutDashboardIcon className="h-5 w-5" />
-                          Dashboard
-                        </div>
-                      </Link>
-                    </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
                         href="/dashboard/jobs"
@@ -213,7 +213,7 @@ export default function NewResponsiveNav() {
                       >
                         <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
                           <BriefcaseBusiness className="h-5 w-5" />
-                          Jobs
+                          Apply for Jobs
                         </div>
                       </Link>
                     </NavigationMenuLink>
@@ -243,20 +243,57 @@ export default function NewResponsiveNav() {
                     </NavigationMenuLink>
                     <NavigationMenuLink asChild>
                       <Link
+                        href="/messages"
+                        className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        prefetch={false}
+                      >
+                        <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
+                          <MessageCircleMore className="h-5 w-5" />
+                          My Messages
+                        </div>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href="/dashboard/myposts"
+                        className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        prefetch={false}
+                      >
+                        <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
+                        <Fullscreen className="h-5 w-5" />
+                        My Posts
+                        </div>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        href="/dashboard/globe"
+                        className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                        prefetch={false}
+                      >
+                        <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
+                        <Earth className="h-5 w-5" />
+                        Global
+                        </div>
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link
                         href="/member"
                         className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                         prefetch={false}
                       >
                         <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
-                          <Users className="h-5 w-5" /> Members
+                          <Users className="h-5 w-5" />
+                          Our Members
                         </div>
                       </Link>
                     </NavigationMenuLink>
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-            {/* issue */}
-            <NavigationMenuLink asChild>
+              {/* issue */}
+              <NavigationMenuLink asChild>
                 <Link
                   href="/profile"
                   className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
@@ -265,26 +302,16 @@ export default function NewResponsiveNav() {
                   <User /> Profile
                 </Link>
               </NavigationMenuLink>
-              <NavigationMenuLink asChild>
-                <Link
-                  href="/messages"
-                  className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                  prefetch={false}
-                >
-                  <MessageCircleMore />
-                  Messages
-                </Link>
-              </NavigationMenuLink>
-</SignedIn>
-              <NavigationMenuLink asChild>
-                <Link
-                  href="/contact"
-                  className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                  prefetch={false}
-                >
-                  Contact Us
-                </Link>
-              </NavigationMenuLink>
+            </SignedIn>
+            <NavigationMenuLink asChild>
+              <Link
+                href="/contact"
+                className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                prefetch={false}
+              >
+                Contact Us
+              </Link>
+            </NavigationMenuLink>
             <NavigationMenuLink>
               <div className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
                 <SignedOut>
@@ -298,8 +325,6 @@ export default function NewResponsiveNav() {
               </div>
             </NavigationMenuLink>
             {/* issue */}
-
-
           </NavigationMenuList>
         </NavigationMenu>
       </header>

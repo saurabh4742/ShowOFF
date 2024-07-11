@@ -7,6 +7,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 import NewResponsiveNav from "@/components/BasicNav/NewResponsiveNav";
+import { SocketProvider } from "@/components/Context/SocketContext";
 
 const fontHeading = Inter({
   subsets: ["latin"],
@@ -35,15 +36,17 @@ export default function RootLayout({
       <html lang="en">
         <body
           className={cn(
-            "h-screen w-full relative flex-col gap-2  antialiased",
+            "h-screen w-full relative flex-col  antialiased",
             "antialiased",
             fontHeading.variable,
             fontBody.variable
           )}
         >
+          <SocketProvider>
           <Toaster />
           <NewResponsiveNav/>
           {children}
+          </SocketProvider>
         </body>
       </html>
     </ClerkProvider>
