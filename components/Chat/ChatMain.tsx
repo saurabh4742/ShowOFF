@@ -24,7 +24,6 @@ const ChatMain: React.FC = () => {
     if (user?.id && socket) {
       socket.connect();
       socket.emit("set_user_id", id);
-      // socket.emit("clerkuserId", user.id);
       socket.on(
         "user-detail",
         (data: { username: string; imageUrl: string }) => {
@@ -36,7 +35,8 @@ const ChatMain: React.FC = () => {
         setOldMessages(data);
       });
       socket.emit("Give_Me_old_chats");
-      socket.on("online_status", (status) => {
+      socket.emit("check_already_online_status")
+      socket.on("already_online_status", (status) => {
         setOnlineStatus(status);
       });
       socket.on(
