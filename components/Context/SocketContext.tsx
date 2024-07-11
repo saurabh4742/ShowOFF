@@ -27,9 +27,8 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    // https://showoffsocketserver.onrender.com
     if (user?.id) {
-      const newSocket = io('http://localhost:3001', { autoConnect: false });
+      const newSocket = io('https://showoffsocketserver.onrender.com', { autoConnect: false });
       setSocket(newSocket);
       newSocket.connect();
       newSocket.emit("clerkuserId", user.id)
