@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 import { useUser } from '@clerk/nextjs';
+import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import toast from 'react-hot-toast';
 import { io, Socket } from 'socket.io-client';
@@ -28,6 +29,14 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
+    async function RegisterIfNot() {
+      try {
+        const res = await axios.post("/api/register");
+      } catch (error) {
+        console.log("error");
+      }
+    }
+    RegisterIfNot();
     if (user?.id) {
       const newSocket = io('https://showoffsocketserver.onrender.com', { autoConnect: false });
       setSocket(newSocket);
