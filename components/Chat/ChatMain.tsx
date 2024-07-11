@@ -36,7 +36,6 @@ const ChatMain: React.FC = () => {
         setOldMessages(data);
       });
       socket.emit("Give_Me_old_chats");
-      socket.emit("get_user_status");
       socket.on("online_status", (status) => {
         setOnlineStatus(status);
       });
