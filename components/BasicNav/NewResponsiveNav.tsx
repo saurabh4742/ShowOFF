@@ -46,7 +46,7 @@ export default function NewResponsiveNav() {
   return (
     <div className="flex w-full flex-col bg-background  ">
       <header className=" flex h-16 items-center justify-between border-b bg-card px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2" prefetch={false}>
+        <Link href="/" className="flex items-center gap-2" prefetch={true}>
           <span className="text-lg font-semibold text-primary">
             Show<span className="text-[#F59E0B]">OFF</span>
           </span>
@@ -63,7 +63,7 @@ export default function NewResponsiveNav() {
               <Link
                 href="/"
                 className="flex items-center gap-2"
-                prefetch={false}
+                prefetch={true}
               >
                 <span className="text-lg font-semibold text-primary">
                   Show<span className="text-[#F59E0B]">OFF</span>
@@ -91,7 +91,7 @@ export default function NewResponsiveNav() {
               <Link
                 href="/"
                 className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-                prefetch={false}
+                prefetch={true}
               >
                 <HomeIcon className="h-5 w-5" />
                 Home
@@ -101,7 +101,7 @@ export default function NewResponsiveNav() {
                   <Link
                   href="/dashboard/jobs"
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-                  prefetch={false}
+                  prefetch={true}
                 >
                   <BriefcaseBusiness className="h-5 w-5" />
                   Apply for Jobs
@@ -109,7 +109,7 @@ export default function NewResponsiveNav() {
                 <Link
                   href="/dashboard/github"
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-                  prefetch={false}
+                  prefetch={true}
                 >
                   <Github className="h-5 w-5" />
                   Repositories
@@ -117,7 +117,7 @@ export default function NewResponsiveNav() {
                 <Link
                   href="/dashboard/youtube"
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-                  prefetch={false}
+                  prefetch={true}
                 >
                   <ImYoutube className="h-5 w-5" />
                   Resources
@@ -126,7 +126,7 @@ export default function NewResponsiveNav() {
                 <Link
                   href="/dashboard/myposts"
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-                  prefetch={false}
+                  prefetch={true}
                 >
                   <Fullscreen className="h-5 w-5" />
                   My Posts
@@ -134,7 +134,7 @@ export default function NewResponsiveNav() {
                 <Link
                   href="/dashboard/globe"
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-                  prefetch={false}
+                  prefetch={true}
                 >
                   <Earth className="h-5 w-5" />
                   Global
@@ -142,7 +142,7 @@ export default function NewResponsiveNav() {
                 <Link
                   href="/member"
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-                  prefetch={false}
+                  prefetch={true}
                 >
                   <Users className="h-5 w-5" />
                   Our Members
@@ -150,7 +150,7 @@ export default function NewResponsiveNav() {
                 <Link
                   href="/messages"
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-                  prefetch={false}
+                  prefetch={true}
                 >
                   <MessageCircleMore className="h-5 w-5" />
                   My Messages
@@ -158,7 +158,7 @@ export default function NewResponsiveNav() {
                 <Link
                   href="/profile"
                   className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-                  prefetch={false}
+                  prefetch={true}
                 >
                   <SettingsIcon className="h-5 w-5" />
                   Profile
@@ -167,7 +167,7 @@ export default function NewResponsiveNav() {
               <Link
                 href="/contact"
                 className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
-                prefetch={false}
+                prefetch={true}
               >
                 <LifeBuoy className="h-5 w-5" />
                 Contact Us
@@ -191,7 +191,7 @@ export default function NewResponsiveNav() {
               <Link
                 href="/"
                 className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                prefetch={false}
+                prefetch={true}
               >
                 Home
               </Link>
@@ -209,7 +209,7 @@ export default function NewResponsiveNav() {
                       <Link
                         href="/dashboard/jobs"
                         className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                        prefetch={false}
+                        prefetch={true}
                       >
                         <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
                           <BriefcaseBusiness className="h-5 w-5" />
@@ -221,7 +221,7 @@ export default function NewResponsiveNav() {
                       <Link
                         href="/dashboard/github"
                         className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                        prefetch={false}
+                        prefetch={true}
                       >
                         <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
                           <Github className="h-5 w-5" />
@@ -233,7 +233,7 @@ export default function NewResponsiveNav() {
                       <Link
                         href="/dashboard/youtube"
                         className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                        prefetch={false}
+                        prefetch={true}
                       >
                         <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
                           <ImYoutube className="h-5 w-5" />
@@ -245,7 +245,7 @@ export default function NewResponsiveNav() {
                       <Link
                         href="/messages"
                         className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                        prefetch={false}
+                        prefetch={true}
                       >
                         <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
                           <MessageCircleMore className="h-5 w-5" />
@@ -257,7 +257,7 @@ export default function NewResponsiveNav() {
                       <Link
                         href="/dashboard/myposts"
                         className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                        prefetch={false}
+                        prefetch={true}
                       >
                         <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
                         <Fullscreen className="h-5 w-5" />
@@ -269,7 +269,7 @@ export default function NewResponsiveNav() {
                       <Link
                         href="/dashboard/globe"
                         className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                        prefetch={false}
+                        prefetch={true}
                       >
                         <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
                         <Earth className="h-5 w-5" />
@@ -281,7 +281,7 @@ export default function NewResponsiveNav() {
                       <Link
                         href="/member"
                         className="group grid h-auto  items-center justify-start gap-1 rounded-md bg-background p-4 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                        prefetch={false}
+                        prefetch={true}
                       >
                         <div className="text-sm flex justify-center items-center gap-1 font-medium leading-none group-hover:underline">
                           <Users className="h-5 w-5" />
@@ -297,7 +297,7 @@ export default function NewResponsiveNav() {
                 <Link
                   href="/profile"
                   className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                  prefetch={false}
+                  prefetch={true}
                 >
                   <User /> Profile
                 </Link>
@@ -307,7 +307,7 @@ export default function NewResponsiveNav() {
               <Link
                 href="/contact"
                 className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                prefetch={false}
+                prefetch={true}
               >
                 Contact Us
               </Link>

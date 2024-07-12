@@ -120,13 +120,13 @@ const NewProfile: React.FC<ChildComponentProps> = ({ editing, setEditing }) => {
           </div>
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
-            <Link href={`/member/${id}/followers`} prefetch={false}>
+            <Link href={`/member/${id}/followers`} prefetch={true}>
                   <div className="text-2xl font-bold">{followers.length}</div>
                 </Link>
               <div className="text-muted-foreground text-sm">Followers</div>
             </div>
             <div>
-            <Link href={`/member/${id}/followings`} prefetch={false}>
+            <Link href={`/member/${id}/followings`} prefetch={true}>
                   <div className="text-2xl font-bold">{followings.length}</div>
                 </Link>
               <div className="text-muted-foreground text-sm">Following</div>
