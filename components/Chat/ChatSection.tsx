@@ -50,6 +50,7 @@ export default function ChatSection({
     if (socket) {
       socket.on("receive_msg", (data: MessageData) => {
         setMessages((prevMessages) => [...prevMessages, data]);
+        scrollToLastMessage();
       });
 
       return () => {
