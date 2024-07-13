@@ -14,7 +14,7 @@ import { VideoPlayer, VideoPlayerProps } from "@graphland/react-video-player";
     autoPlay: false,
     loop: false,
     height: 300, // Set height to a smaller value
-    width: 250, // Set width to a smaller value
+    width: 270, // Set width to a smaller value
     sources: videoSources,
     controlBar: {
       skipButtons: {
