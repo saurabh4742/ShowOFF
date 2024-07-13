@@ -139,16 +139,11 @@ export default function CreatePost() {
                       <Loader />
                     ) : (
                       <>
-                        <button
+                        <Button
                           onClick={clearImage}
-                          className="absolute z-10 top-[-7px] right-1 shadow-lg tex-sm text-primary"
                         >
-                          x
-                        </button>
-                        <Avatar className=" w-10 h-10 shadow-lg rounded-lg">
-                          <AvatarImage src={fileurl} />
-                          <AvatarFallback>S</AvatarFallback>
-                        </Avatar>
+                          Remove
+                        </Button>
                       </>
                     )}
                   </div>

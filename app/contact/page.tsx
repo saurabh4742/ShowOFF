@@ -184,12 +184,12 @@ setFileUrl(undefined)
                       <Loader />
                     ) : (
                       <>
-                        <button
+                        <Button
                           onClick={clearImage}
-                          className="absolute h-full w-full z-10 right-1 shadow-lg tex-sm text-primary"
+                          
                         >
-                          x
-                        </button>
+                         Remove
+                        </Button>
                       </>
                     )}
                   </div>
