@@ -75,6 +75,7 @@ const Page = () => {
           });
           form.reset();
           setSending(false);
+setFileUrl(undefined)
           resolve(res.data); // Resolve the promise if the request is successful
         } catch (error) {
           setSending(false);
