@@ -10,6 +10,7 @@ import Image from "next/image";
 import { getFileType } from "@/utils/ExtensionIdetifier";
 import Link from "next/link";
 import AudioPlayer from "../AudioPlayer/audioplayer";
+import VideoPlayer from "../VideoPlayer/videoPlayer";
 interface Post {
   id: string;
   clerkuserId: string;
@@ -56,7 +57,10 @@ export const PostCard: FC<PostPromp> = ({ post }) => {
                 post.LastName &&
                 post.FirstName + "_" + post.LastName}
             </h4>
-            {fileType === 'image' && post.imageFileUrl && (
+            {fileType === "video" && post.imageFileUrl && (
+              <VideoPlayer src={post.imageFileUrl} />
+            )}
+            {fileType === "image" && post.imageFileUrl && (
               <Image
                 src={post.imageFileUrl}
                 alt="Image"
@@ -66,11 +70,15 @@ export const PostCard: FC<PostPromp> = ({ post }) => {
               />
             )}
             <p className="text-sm">{post.comment}</p>
-            {fileType === 'audio' && post.imageFileUrl && (
-              <AudioPlayer audioSrc={post.imageFileUrl}/>
+            {fileType === "audio" && post.imageFileUrl && (
+              <AudioPlayer audioSrc={post.imageFileUrl} />
             )}
-            {fileType === 'other' && post.imageFileUrl && (
-              <Link href={post.imageFileUrl} target="_blank" rel="noopener noreferrer">
+            {fileType === "other" && post.imageFileUrl && (
+              <Link
+                href={post.imageFileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button className="gap-2 rounded-lg">
                   <Download />
                   Attachment

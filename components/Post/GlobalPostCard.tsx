@@ -8,6 +8,7 @@ import Image from "next/image";
 import { getFileType } from "@/utils/ExtensionIdetifier";
 import AudioPlayer from "../AudioPlayer/audioplayer";
 import Link from "next/link";
+import VideoPlayer from "../VideoPlayer/videoPlayer";
 interface Post {
   id: string;
   clerkuserId: string;
@@ -43,7 +44,9 @@ export const GlobalPostCard: FC<PostPromp> = ({ post }) => {
                 loading="lazy"
               />
             )}
-            
+            {fileType === "video" && post.imageFileUrl && (
+              <div className=" w-6/12"><VideoPlayer src={post.imageFileUrl}/></div>
+            )}
             <p className="text-sm">{post.comment}</p>
             {fileType === 'audio' && post.imageFileUrl && (
               <AudioPlayer audioSrc={post.imageFileUrl}/>

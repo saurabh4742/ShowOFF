@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^5.1.5",
     "@emoji-mart/data": "^1.2.1",
     "@emoji-mart/react": "^1.1.1",
+    "@graphland/react-video-player": "^0.1.14",
     "@hookform/resolvers": "^3.6.0",
     "@lottiefiles/react-lottie-player": "^3.5.4",
     "@prisma/client": "^5.15.1",
@@ -47,13 +48,13 @@
     "react-hook-form": "^7.52.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
-    "react-player": "^2.16.0",
     "react-youtube": "^10.1.0",
     "shadcn-ui": "^0.8.0",
     "socket.io-client": "^4.7.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.13.2",
+    "video-react": "^0.16.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
