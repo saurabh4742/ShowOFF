@@ -1,6 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { db } from "@/utils/prismadb";
 import { NextResponse,NextRequest } from "next/server";
+import { utapi } from "@/utils/utAPI";
 export async function POST(req:NextRequest) {
     try {
         const {Comment,fileurl}=await req.json();
@@ -64,6 +65,12 @@ export async function GET(req:NextRequest) {
 export async function DELETE(req:NextRequest) {
     try {
         const {postId}=await req.json()
+
+        const post=await db.post.findUnique({where:{id:postId}})
+        if(post?.imageFileUrl){
+            const fileurl=post.imageFileUrl
+            await utapi.deleteFiles(extractFilename(fileurl));
+        }
             await db.post.delete({where:{
                 id:postId
             }})
@@ -73,3 +80,8 @@ export async function DELETE(req:NextRequest) {
         return NextResponse.json(error)
     }
 }
+
+const extractFilename = (url:string) => {
+    const parts = url.split('/');
+    return parts[parts.length - 1];
+  };

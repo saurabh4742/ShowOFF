@@ -12,7 +12,6 @@
     "@clerk/nextjs": "^5.1.5",
     "@emoji-mart/data": "^1.2.1",
     "@emoji-mart/react": "^1.1.1",
-    "@graphland/react-video-player": "^0.1.14",
     "@hookform/resolvers": "^3.6.0",
     "@lottiefiles/react-lottie-player": "^3.5.4",
     "@prisma/client": "^5.15.1",

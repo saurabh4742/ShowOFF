@@ -33,7 +33,7 @@ export const GlobalPostCard: FC<PostPromp> = ({ post }) => {
             <AvatarImage src={post.imageUrl} />
             <AvatarFallback>{post.FirstName && post.FirstName[0]}</AvatarFallback>
           </Avatar>
-          <div className="space-y-2">
+          <div className="w-full space-y-2">
             <h4 className="text-sm font-semibold">@{post.FirstName && post.LastName && post.FirstName+"_"+post.LastName}</h4>
             {fileType === 'image' && post.imageFileUrl && (
               <Image
@@ -45,7 +45,7 @@ export const GlobalPostCard: FC<PostPromp> = ({ post }) => {
               />
             )}
             {fileType === "video" && post.imageFileUrl && (
-              <div className=" w-6/12"><VideoPlayer src={post.imageFileUrl}/></div>
+              <VideoPlayer src={post.imageFileUrl}/>
             )}
             <p className="text-sm">{post.comment}</p>
             {fileType === 'audio' && post.imageFileUrl && (

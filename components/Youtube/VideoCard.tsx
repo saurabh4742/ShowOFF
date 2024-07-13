@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { truncateText } from "@/Hooks/truncateDiscription";
 import { Label } from "@radix-ui/react-dropdown-menu";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/lazy";
 interface YoutubeSearchResult {
     kind: string;
     etag: string;
@@ -61,6 +61,7 @@ export const VideoCard: FC<VideoProp> = ({ video }) => {
             <h4 className="text-sm text-[#F59E0B] underline font-semibold">@{video.snippet.channelTitle}</h4>
             <div className="sm:flex w-full h-[60vh] hidden">
                 <ReactPlayer
+                controls
                   width="100%"
                   height="100%"
                   url={`https://www.youtube.com/watch?v=${video.id.videoId}`}
@@ -68,6 +69,7 @@ export const VideoCard: FC<VideoProp> = ({ video }) => {
               </div>
               <div className="flex justify-center items sm:hidden">
                 <ReactPlayer
+                controls
                   width="100%"
                   height="100%"
                   url={`https://www.youtube.com/watch?v=${video.id.videoId}`}
