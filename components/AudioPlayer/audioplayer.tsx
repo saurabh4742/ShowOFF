@@ -70,7 +70,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc }) => {
   };
 
   return (
-    <Card className="flex flex-col gap-1 items-center p-2 mt-4">
+    <Card className="flex flex-col w-full sm:w-3/12 gap-1 items-center p-2 mt-4">
       <div
         ref={progressRef}
         className="w-[60%]"
