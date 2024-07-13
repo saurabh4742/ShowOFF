@@ -65,6 +65,7 @@ export const PostCard: FC<PostPromp> = ({ post }) => {
                 loading="lazy"
               />
             )}
+            <p className="text-sm">{post.comment}</p>
             {fileType === 'audio' && post.imageFileUrl && (
               <AudioPlayer audioSrc={post.imageFileUrl}/>
             )}
@@ -76,7 +77,6 @@ export const PostCard: FC<PostPromp> = ({ post }) => {
                 </Button>
               </Link>
             )}
-            <p className="text-sm">{post.comment}</p>
             <div className="flex items-center pt-2">
               <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
               <span className="text-xs text-muted-foreground">

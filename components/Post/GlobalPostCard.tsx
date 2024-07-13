@@ -1,11 +1,13 @@
 "use client";
-import { AlertCircle, CalendarDays } from "lucide-react";
+import { AlertCircle, CalendarDays, Download } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FC } from "react";
 import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { getFileType } from "@/utils/ExtensionIdetifier";
+import AudioPlayer from "../AudioPlayer/audioplayer";
+import Link from "next/link";
 interface Post {
   id: string;
   clerkuserId: string;
@@ -32,9 +34,28 @@ export const GlobalPostCard: FC<PostPromp> = ({ post }) => {
           </Avatar>
           <div className="space-y-2">
             <h4 className="text-sm font-semibold">@{post.FirstName && post.LastName && post.FirstName+"_"+post.LastName}</h4>
-            Attachment
-
+            {fileType === 'image' && post.imageFileUrl && (
+              <Image
+                src={post.imageFileUrl}
+                alt="Image"
+                width={300}
+                height={300}
+                loading="lazy"
+              />
+            )}
+            
             <p className="text-sm">{post.comment}</p>
+            {fileType === 'audio' && post.imageFileUrl && (
+              <AudioPlayer audioSrc={post.imageFileUrl}/>
+            )}
+            {fileType === 'other' && post.imageFileUrl && (
+              <Link href={post.imageFileUrl} target="_blank" rel="noopener noreferrer">
+                <Button className="gap-2 rounded-lg">
+                  <Download />
+                  Attachment
+                </Button>
+              </Link>
+            )}
             <div className="flex items-center pt-2">
               <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
               <span className="text-xs text-muted-foreground">
