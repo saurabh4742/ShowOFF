@@ -100,7 +100,7 @@ export default function CreatePost() {
               <TooltipTrigger asChild>
                 {!fileurl ? (
                   <UploadButton
-                    endpoint="imageUploader"
+                    endpoint="attachment"
                     appearance={{
                       button:
                         "ut-ready:bg-reen-500 ut-uploading:cursor-not-allowed rounded-sm p-2   w-fit  after:bg-orange-400",
