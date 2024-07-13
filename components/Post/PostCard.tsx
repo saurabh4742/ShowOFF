@@ -1,5 +1,5 @@
 "use client";
-import { CalendarDays, Eye, Trash2 } from "lucide-react";
+import { CalendarDays, Download, Eye, Trash2 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FC, useState } from "react";
 import { Card, CardContent } from "../ui/card";
@@ -7,6 +7,9 @@ import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import axios from "axios";
 import Image from "next/image";
+import { getFileType } from "@/utils/ExtensionIdetifier";
+import Link from "next/link";
+import AudioPlayer from "../AudioPlayer/audioplayer";
 interface Post {
   id: string;
   clerkuserId: string;
@@ -37,6 +40,7 @@ export const PostCard: FC<PostPromp> = ({ post }) => {
     }
   }
   const router = useRouter();
+  const fileType = post.imageFileUrl ? getFileType(post.imageFileUrl) : null;
   return (
     <Card className="p-4 w-full">
       <CardContent className="w-full">
@@ -52,14 +56,25 @@ export const PostCard: FC<PostPromp> = ({ post }) => {
                 post.LastName &&
                 post.FirstName + "_" + post.LastName}
             </h4>
-            {post.imageFileUrl && (
+            {fileType === 'image' && post.imageFileUrl && (
               <Image
                 src={post.imageFileUrl}
-                alt="S"
+                alt="Image"
                 width={300}
                 height={300}
                 loading="lazy"
               />
+            )}
+            {fileType === 'audio' && post.imageFileUrl && (
+              <AudioPlayer audioSrc={post.imageFileUrl}/>
+            )}
+            {fileType === 'other' && post.imageFileUrl && (
+              <Link href={post.imageFileUrl} target="_blank" rel="noopener noreferrer">
+                <Button className="gap-2 rounded-lg">
+                  <Download />
+                  Attachment
+                </Button>
+              </Link>
             )}
             <p className="text-sm">{post.comment}</p>
             <div className="flex items-center pt-2">

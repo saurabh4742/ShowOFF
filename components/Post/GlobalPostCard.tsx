@@ -5,6 +5,7 @@ import { FC } from "react";
 import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import { getFileType } from "@/utils/ExtensionIdetifier";
 interface Post {
   id: string;
   clerkuserId: string;
@@ -20,6 +21,7 @@ interface PostPromp {
 }
 
 export const GlobalPostCard: FC<PostPromp> = ({ post }) => {
+  const fileType = post.imageFileUrl ? getFileType(post.imageFileUrl) : null;
   return (
     <Card className="p-4 w-full">
       <CardContent className="w-full">
@@ -30,15 +32,8 @@ export const GlobalPostCard: FC<PostPromp> = ({ post }) => {
           </Avatar>
           <div className="space-y-2">
             <h4 className="text-sm font-semibold">@{post.FirstName && post.LastName && post.FirstName+"_"+post.LastName}</h4>
-            {post.imageFileUrl && (
-              <Image
-                src={post.imageFileUrl}
-                alt="S"
-                width={300}
-                height={300}
-                loading="lazy"
-              />
-            )}
+            Attachment
+
             <p className="text-sm">{post.comment}</p>
             <div className="flex items-center pt-2">
               <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
