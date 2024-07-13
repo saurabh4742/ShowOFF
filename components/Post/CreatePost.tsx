@@ -35,6 +35,7 @@ import { ShieldAlert } from 'lucide-react';
 export default function CreatePost() {
   const [removing, setRemoving] = useState(false);
   const [fileurl, setFileUrl] = useState<string | undefined>(undefined);
+  const [uploading, setUploading] = React.useState(false);
   const clearImage = async () => {
     if (fileurl) {
       setRemoving(true);
@@ -118,10 +119,18 @@ export default function CreatePost() {
                         return ``;
                       },
                     }}
+                    onUploadAborted={()=>{
+                      setUploading(false)
+                    }}
+                    onUploadBegin={()=>{
+                      setUploading(true)
+                    }}
                     onClientUploadComplete={(res) => {
                       setFileUrl(res[0].serverData.fileUrl);
+                      setUploading(false)
                     }}
                     onUploadError={(error: Error) => {
+                      setUploading(false)
                     }}
                   />
                 ) : (
@@ -151,7 +160,7 @@ export default function CreatePost() {
 
           <Button
             type="submit"
-            disabled={saving}
+            disabled={uploading || saving}
             size="sm"
             className="ml-auto gap-1.5"
           >
@@ -173,7 +182,7 @@ export default function CreatePost() {
                 />
               </svg>
             ) : (
-              <>Post Message</>
+              <>{uploading?"File Uploading...":"Post Message"}</>
             )}
             <CornerDownLeft className="size-3.5" />
           </Button>

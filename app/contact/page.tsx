@@ -32,15 +32,15 @@ import { Input } from "@/components/ui/input";
 import { MailFormSchema } from "@/ZodSchema/zodSchema";
 import axios from "axios";
 import { Paperclip } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast"
 import { SingleUploader } from "@/components/uploadthing/test";
+import toast from "react-hot-toast";
 import { UploadButton } from "@/utils/uploadthings";
 import Loader from "@/components/Loader";
 const Page = () => {
-  const { toast } = useToast()
   const [removing, setRemoving] = useState(false);
   const [fileurl, setFileUrl] = useState<string | undefined>(undefined);
   const [sending, setSending] = React.useState(false);
+  const [uploading, setUploading] = React.useState(false);
   const clearImage = async () => {
     if (fileurl) {
       setRemoving(true);
@@ -60,32 +60,35 @@ const Page = () => {
     },
   });
   async function onSubmit(values: z.infer<typeof MailFormSchema>) {
-    try {
-      const { email, name, issue } = values;
-      console.log(values);
-      setSending(true);
-      const res = await axios.post("/api/sendmail", {
-        email,
-        name,
-        issue,
-        fileurl
-      });
-      form.reset();
-      setSending(false);
-      toast({
-        variant:"default",
-        title: "Notification",
-        description: res.data.message,
-      })
-    } catch (error) {
-      setSending(false);
-      toast({
-        variant:"destructive",
-        title: "Notification",
-        description: "Mail could not sent ",
-      })
-    }
+    const { email, name, issue } = values;
+    
+    toast.promise(
+      new Promise(async (resolve, reject) => {
+        try {
+          console.log(values);
+          setSending(true);
+          const res = await axios.post("/api/sendmail", {
+            email,
+            name,
+            issue,
+            fileurl
+          });
+          form.reset();
+          setSending(false);
+          resolve(res.data); // Resolve the promise if the request is successful
+        } catch (error) {
+          setSending(false);
+          reject(error); // Reject the promise if there's an error
+        }
+      }),
+      {
+        loading: 'Sending...',
+        success: <b>Mail Sent!</b>,
+        error: <b>Could not Sent.</b>,
+      }
+    );
   }
+  
   return (
     <div className="flex justify-center">
       <Card className="w-full m-2  ">
@@ -160,10 +163,18 @@ const Page = () => {
                         return ``;
                       },
                     }}
+                    onUploadAborted={()=>{
+                      setUploading(false)
+                    }}
+                    onUploadBegin={()=>{
+                        setUploading(true)
+                    }}
                     onClientUploadComplete={(res) => {
                       setFileUrl(res[0].serverData.fileUrl);
+                      setUploading(false)
                     }}
                     onUploadError={(error: Error) => {
+                      setUploading(false)
                     }}
                   />
                 ) : (
@@ -188,7 +199,7 @@ const Page = () => {
           </TooltipProvider>
 
                 <Button
-                  disabled={sending}
+                  disabled={uploading || sending}
                   className="w-full"
                   size="lg"
                   type="submit"
@@ -211,7 +222,7 @@ const Page = () => {
                       />
                     </svg>
                   ) : (
-                    <><SendHorizontal className="mr-2 h-5 w-5" />Mail</>
+                    <>{uploading? "File Uploading...":<><SendHorizontal className="mr-2 h-5 w-5" />Mail</>}</>
                   )}
                 </Button>
               </div>
