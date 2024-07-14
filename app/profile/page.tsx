@@ -59,6 +59,14 @@ export default function Page() {
         const res = await axios.get("/api/getprofile");
         const user: User = res.data.user;
         setNewUser(user.newUser);
+        form.reset({
+          FirstName: user.FirstName || "",
+          LastName: user.LastName || "",
+          SKill: user.SKill || "",
+          LinkdinId: user.LinkdinId || "",
+          Location: user.location || "",
+          GithubId: user.GithubId || "",
+        });
       } catch (error) {
         console.log(error);
       }

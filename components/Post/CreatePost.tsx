@@ -1,9 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useDropzone } from "@uploadthing/react";
-import { useCallback } from "react";
-import { generateClientDropzoneAccept } from "uploadthing/client";
 import { UploadButton, useUploadThing } from "@/utils/uploadthings";
 import { Textarea } from "@/components/ui/textarea";
 import React, { useEffect, useState } from "react";

@@ -10,7 +10,7 @@ export default function Landing() {
           <div className="container px-4  md:px-6 sm:grid flex flex-col gap-12 md:grid-cols-2 items-center">
             <div className="space-y-6 ">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-background">
-                Find Your Dream Internship or Job
+              Find Your Perfect Internship or Job
               </h1>
               <p className="text-lg md:text-xl text-background">
                 Our app helps you discover the best opportunities tailored to your profile, with real-time communication

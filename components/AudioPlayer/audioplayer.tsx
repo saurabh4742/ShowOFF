@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useRef, useEffect, ChangeEvent, MouseEvent } from 'react';
+import React, { useState, useRef, useEffect, MouseEvent } from 'react';
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { PlayIcon, PauseIcon } from 'lucide-react';
@@ -13,6 +13,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressRef = useRef<HTMLDivElement | null>(null);
 
@@ -24,6 +25,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc }) => {
         const currentTime = audio.currentTime;
         const progress = (currentTime / duration) * 100;
         setProgress(progress);
+        setCurrentTime(currentTime);
       }
     };
 
@@ -69,25 +71,31 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc }) => {
     }
   };
 
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  };
+
   return (
-    <Card className="flex flex-col w-full sm:w-3/12 gap-1 items-center p-2 mt-4">
+    <Card className="flex flex-col w-full sm:w-3/12 gap-1 items-center p-3 mt-4">
       <div
         ref={progressRef}
-        className="w-[60%]"
+        className="w-full text-muted-foreground text-sm flex justify-center items-center gap-2"
         onClick={handleProgressClick}
         style={{ cursor: 'pointer' }}
       >
-        <Progress value={progress} className="w-full h-1" />
+        <span>{formatTime(currentTime)}</span>
+        <Progress value={progress} className=" h-1" />
+        <span>{formatTime(duration)}</span>
       </div>
       <audio ref={audioRef} src={audioSrc} />
       <div className="flex items-center text-muted-foreground text-sm">Mp3</div>
-      <Button onClick={handlePlayPause} size="sm" className=" rounded-sm">
-        {isPlaying ? <PauseIcon size={15}  /> : <PlayIcon size={15} />}
+      <Button onClick={handlePlayPause} size="sm" className="rounded-sm">
+        {isPlaying ? <PauseIcon size={15} /> : <PlayIcon size={15} />}
       </Button>
     </Card>
   );
 };
 
 export default AudioPlayer;
-
-

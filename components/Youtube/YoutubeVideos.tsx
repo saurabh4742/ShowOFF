@@ -86,7 +86,6 @@ const YoutubeSearch = () => {
     if (skill) {
       handleSubmit(transformSkill(skill));
     }
-    // Optional: Code to fetch trending repositories on initial render can be placed here
   }, [skill]);
   const opts = {
     height: "390",
