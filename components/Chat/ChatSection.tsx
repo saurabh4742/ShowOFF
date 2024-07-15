@@ -89,7 +89,7 @@ export default function ChatSection({
           <h2 className="text-sm font-medium">{username}</h2>
         </div>
         <ScrollArea ref={scrollAreaRef} className="flex-1  relative max-h-[70vh] min-h-[70vh] p-4">
-          {messages.map((message, index) => (
+          {!socket?<div className="flex justify-center items-center">Please wait...</div>:<>{messages.map((message, index) => (
             <div
               key={message.id}
               ref={index === messages.length - 1 ? lastMessageRef : null}
@@ -115,7 +115,7 @@ export default function ChatSection({
                 </div>
               </div>
             </div>
-          ))}
+          ))}</> }
           <div className="absolute bottom-2 w-full flex justify-center items-center">
           <Button className="rounded-full bg-[#F59E0B]" onClick={scrollToLastMessage}>
             <ArrowDown className="h-5 w-5" />

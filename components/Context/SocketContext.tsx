@@ -29,6 +29,8 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
+    
+
     async function RegisterIfNot() {
       try {
         const res = await axios.post("/api/register");
@@ -41,6 +43,13 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
       const newSocket = io('https://showoffsocketserver.onrender.com', { autoConnect: false });
       setSocket(newSocket);
       newSocket.connect();
+      newSocket.on("profile_status",(verified)=>{
+        if(!verified){
+          toast('Incomplete Profile', {
+            icon: '⚠️',
+          });
+        }
+      })
       newSocket.emit("clerkuserId", user.id)
       newSocket.on(
         "user_online_status",
@@ -85,10 +94,12 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
         }
       );
       return () => {
+        newSocket.off("user_online_status")
+        newSocket.off("profile_status")
         newSocket.disconnect();
       };
     }
-  }, [user?.id]);
+  }, [ user?.id]);
 ;
 
   return <SocketContext.Provider value={{ socket }}>{children}</SocketContext.Provider>;
