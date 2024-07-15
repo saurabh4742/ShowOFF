@@ -44,7 +44,7 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
       setSocket(newSocket);
       newSocket.connect();
       newSocket.on("profile_status",(verified)=>{
-        if(!verified){
+        if(verified){
           toast('Incomplete Profile', {
             icon: '⚠️',
           });
