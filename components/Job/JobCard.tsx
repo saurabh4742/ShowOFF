@@ -7,28 +7,29 @@ import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import { truncateText } from "@/Hooks/truncateDiscription";
 import { Label } from "../ui/label";
+interface ApplyOption {
+  title: string;
+  link: string;
+}
+
 interface JobResult {
-    title: string;
-    company_name: string;
-    location: string;
-    via: string;
-    description: string;
-    job_highlights: JobHighlight[];
-    related_links: RelatedLink[];
-    extensions: string[];
-    detected_extensions: DetectedExtensions;
-    job_id: string;
-    thumbnail:string
-  }
+  title: string;
+  company_name: string;
+  location: string;
+  via: string;
+  description: string;
+  job_highlights: JobHighlight[];
+  extensions: string[];
+  detected_extensions: DetectedExtensions;
+  job_id: string;
+  thumbnail: string;
+  apply_options: ApplyOption[]; // Added this field
+}
   
   interface JobHighlight {
     items: string[];
   }
   
-  interface RelatedLink {
-    link: string;
-    text: string;
-  }
   
   interface DetectedExtensions {
     posted_at: string;
@@ -63,12 +64,12 @@ export const JobCard: FC<JobCardProps> = ({ job }) => {
             </div>
             <Button 
               onClick={() => {
-                router.push(job.related_links[0].link);
+                router.push(job.apply_options[0].link);
               }}
               className="rounded-none"
             >
               <Eye className="mr-2 h-4 w-4" />
-              Related Link
+              Apply Now
             </Button>
           </div>
         </div>
