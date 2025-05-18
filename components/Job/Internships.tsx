@@ -14,6 +14,10 @@ interface User {
     LinkdinId: string | null;
     GithubId: string | null;
   }
+    interface ApplyOption {
+    title: string;
+    link: string;
+}
 interface JobResult {
     title: string;
     company_name: string;
@@ -25,7 +29,8 @@ interface JobResult {
     extensions: string[];
     detected_extensions: DetectedExtensions;
     job_id: string;
-    thumbnail :  string
+    thumbnail :  string;
+     apply_options: ApplyOption[];
   }
   
   interface JobHighlight {
