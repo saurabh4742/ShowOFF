@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Construct a query for internships
-    const query = `${JobTransform(me.SKill)} internship`;
+    const query = `${JobTransform(me.SKill)}+internship`;
 
     const response = await axios.get("https://serpapi.com/search", {
       params: {

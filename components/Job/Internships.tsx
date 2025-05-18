@@ -59,7 +59,7 @@ function InternshipSearch() {
           const response = await axios.get(`/api/internships`);
           setIsLoading(false)
           console.log(response.data)
-          setJobs(response.data.internship || []); // 
+          setJobs(response.data.internships || []); // 
         } catch (error) {
             setIsLoading(false)
           console.error(error);

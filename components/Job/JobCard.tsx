@@ -41,7 +41,7 @@ interface JobCardProps {
 
 export const JobCard: FC<JobCardProps> = ({ job }) => {
   const router = useRouter();
-  const truncatedDescription = truncateText(job.description, 80);
+  const truncatedDescription = truncateText(job.description, 40);
   return (
     <Card className="p-2">
       <CardContent>
