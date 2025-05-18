@@ -19,8 +19,8 @@ export async function GET(req: NextRequest) {
     
           const userIds = new Set<string>();
     
-          chatsAsSender.forEach(chat => userIds.add(chat.receiver));
-          chatsAsReceiver.forEach(chat => userIds.add(chat.sender));
+          chatsAsSender.forEach((chat: { receiver: string; }) => userIds.add(chat.receiver));
+          chatsAsReceiver.forEach((chat: { sender: string; }) => userIds.add(chat.sender));
     
           const users = await db.user.findMany({
             where: { id: { in: Array.from(userIds) } },
