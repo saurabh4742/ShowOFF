@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
       console.log("existing user");
       var Followed=false
       if (existinguser?.followers) {
-        Followed = existinguser.followers.some(follower => follower.followerId === me?.id);
+        Followed = existinguser.followers.some((follower: { followerId: any; }) => follower.followerId === me?.id);
       }
       if(existinguser?.clerkUserId ===user.id){
         return NextResponse.json({ user: {existinguser},followed:Followed,self:true }, { status: 200 });
